@@ -74,11 +74,12 @@ void print_sym_table() { //symbol table 출력하는 함수
 }
 
 void print_hash_table() {
-    printf("\nHash Table\n");
+    printf("\n [[Hash Table]] \n");
+    printf("---------------------\n");
 
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
         if (HT[i] != NULL) {
-            printf("[%d]: ", i);
+            printf("Hash Code %d: ", i);
             HTpointer current = HT[i];
 
             while (current != NULL) {
@@ -145,7 +146,18 @@ int main() {
             }
             continue; // 다음 문자로 이동
         }
-        str_pool[index_next++] = (char)c; // 버퍼에 문자 저장
+        // 읽은 문자가 허용되지 않은 문자인 경우. 중간에라도 들어오면 막아야 함.
+        if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || (c == '_')))
+        {
+            printf("Error - usuage of unable character : %c\n", c);
+            while ((c = fgetc(fp)) != EOF && !(strchr(separators, c) != NULL)) {
+            }
+            index_next = index_start;
+            continue;
+        }
+        // 읽은 문자가 구분자가 아닌 허용된 문자인 경우
+        else
+            str_pool[index_next++] = (char)c;
     }
 
     if (index_start < index_next) { // 마지막 문자열 출력
@@ -160,6 +172,7 @@ int main() {
             hash_key += str_pool[index_start + i++];
         }
         hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
+
 
         HTpointer htp = lookup_hash_table(index_start, hash_value);
         if (htp == NULL) {
