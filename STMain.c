@@ -254,34 +254,51 @@ int main()
 		int hash_key = 0;
 		int str_len = index_next - index_start; // 들어온 문자열 길이 계산
 
-			// hash key 계산
-		while (str_pool[index_start + i] != '\0')
-		{
-			hash_key += str_pool[index_start + i++];
-		}
-		hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
-
 		// 중복된 식별자 검사
 		bool isDuplicate = lookup_sym_table(index, index_start);
+
+		// 중복된 식별자가 없는 경우에만 처리
 		if (!isDuplicate)
 		{
-			// 중복된 식별자가 없으면, symbol table에 식별자 추가
-			str_pool[index_next] = '\0';
-			sym_table[index][0] = index_start;
-			sym_table[index++][1] = (int)strlen(str_pool + index_start);
-
-
-			HTpointer htp = lookup_hash_table(index_start, hash_value);
-			if (htp == NULL)
+			// 숫자로 시작하는지 검사
+			if (!(str_pool[index_start] >= '0' && str_pool[index_start] <= '9'))
 			{
-				// 중복이 없으면, symbol table에 식별자를 추가하고, hash table에도 추가
-				add_hash_table(index_start, hash_value);
-				printf("%s (Hash: %d)\n", str_pool + index_start, hash_value); // 버퍼의 내용을 화면에 출력
+				// symbol table에 추가
+				sym_table[index][0] = index_start;
+				sym_table[index++][1] = (int)strlen(str_pool + index_start);
+
+				// hash key 계산
+				while (str_pool[index_start + i] != '\0')
+				{
+					hash_key += str_pool[index_start + i++];
+				}
+				int hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
+
+				// hash table에 추가
+				HTpointer htp = lookup_hash_table(index_start, hash_value);
+				if (htp == NULL)
+				{
+					if (str_len >= MAX_STRING_LENGTH) // 15자보다 식별자 길이가 크다면,
+					{
+						printf("Error - Inserted String is longer than 15 words\n"); // 에러 메시지 출력
+					}
+					else
+					{
+						add_hash_table(index - 1, hash_value);
+						printf("%s (Hash: %d)\n", str_pool + index_start, hash_value); // 버퍼의 내용을 화면에 출력
+					}
+					index_next = ++index_start;
+				}
+			}
+			else
+			{
+				printf("Error - start with digit (%s)\n", str_pool + index_start); // 숫자로 시작하는 경우 에러 메시지 출력
+				index_next = index_start;
 			}
 		}
 		else
 		{
-			printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value);
+			printf("%s (Already exists)\n", str_pool + index_start); // 중복인 경우 에러 메시지 출력
 			index_next = index_start;
 		}
 	}
