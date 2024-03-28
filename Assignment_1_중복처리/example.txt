@@ -1,5 +1,18 @@
-This is test data for the 
-
-hashtable assignment
-
-x 123 assignment x x x
+abcd
+abc123
+abc_123
+abc%%%
+123
+abc1
+ad87va
+apple
+Ilovepizza
+hey1
+1tisfake
+how_can_I
+do?
+it 
+abcd
+abcd
+avdasdfasdfasfses
+123
