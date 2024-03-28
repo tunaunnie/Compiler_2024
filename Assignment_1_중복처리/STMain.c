@@ -31,7 +31,6 @@ HTpointer lookup_hash_table(int id_index, int hscode) {
     return NULL; // 항목을 찾지 못한 경우
 }
 
-//마지막에서 오류가 남...
 void add_hash_table(int id_index, int hscode) {
 
     HTpointer newEntry = (HTpointer)malloc(sizeof(HTentry));
@@ -109,10 +108,32 @@ int main() {
     }
 
     while ((c = fgetc(fp)) != EOF) { // 파일 끝까지 문자 읽기
-        if (strchr(separators, c) != NULL || index_next >= sizeof(str_pool) - 1) {
+
+        if (index_next >= sizeof(str_pool) - 1) {
+            printf("Error - String Pool 크기를 초과했습니다.\n");
+            while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} //이 문자열은 저장하지 않고 건너뜀.
+            index_next = index_start; //인덱스 초기화
+            //continue; //다음 문자로 이동해서 계속 진행함.
+            fclose(fp); // 파일 닫기
+            break; // 프로그램 종료
+        }
+
+        else if (strchr(separators, c) != NULL) {
             // 구분자를 만나거나 버퍼 크기 제한에 도달했을 때
             if (index_start < index_next) { // 버퍼에 내용이 있을 경우만 출력
                 str_pool[index_next] = '\0'; // 문자열 종료
+
+                /* 15자 안 넘게 추가한 부분*/
+                int str_len = index_next - index_start; //들어온 문자열 길이 계산
+                if (str_len > MAX_STRING_LENGTH) { //15자 보다 식별자 길이가 크다면
+                    printf("Error - Inserted String is longer than 15 words");
+
+                    while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} //이 문자열은 저장하지 않고 건너뜀.
+                    index_next = index_start; //인덱스 초기화
+                    continue; //다음 문자로 이동해서 계속 진행함.
+                }
+
+                str_pool[index_next] = '\0';
 
                 if (str_pool[index_start] >= '0' && str_pool[index_start] <= '9') { // 문자열이 숫자로 시작할 경우
                     printf("Error - start with digit (%s)\n", str_pool + index_start); // 에러 출력
