@@ -257,10 +257,11 @@ int main()
 		// 중복된 식별자 검사
 		bool isDuplicate = lookup_sym_table(index, index_start);
 
-		// 중복된 식별자가 없는 경우에만 처리
+		// 중복된 식별자가 없는 경우
 		if (!isDuplicate)
 		{
 			// 숫자로 시작하는지 검사
+			// 숫자로 시작하지 않는 경우
 			if (!(str_pool[index_start] >= '0' && str_pool[index_start] <= '9'))
 			{
 				// symbol table에 추가
@@ -278,7 +279,8 @@ int main()
 				HTpointer htp = lookup_hash_table(index_start, hash_value);
 				if (htp == NULL)
 				{
-					if (str_len >= MAX_STRING_LENGTH) // 15자보다 식별자 길이가 크다면,
+					// 15자보다 식별자 길이가 크다면,
+					if (str_len >= MAX_STRING_LENGTH)
 					{
 						printf("Error - Inserted String is longer than 15 words\n"); // 에러 메시지 출력
 					}
@@ -290,15 +292,16 @@ int main()
 					index_next = ++index_start;
 				}
 			}
-			else
+			else // 숫자로 시작하는 경우
 			{
-				printf("Error - start with digit (%s)\n", str_pool + index_start); // 숫자로 시작하는 경우 에러 메시지 출력
+				printf("Error - start with digit (%s)\n", str_pool + index_start);  // 에러 메시지 출력
 				index_next = index_start;
 			}
 		}
+		//중복 식별자가 있는 경우
 		else
 		{
-			printf("%s (Already exists)\n", str_pool + index_start); // 중복인 경우 에러 메시지 출력
+			printf("%s (Already exists)\n", str_pool + index_start); // 에러 메시지 출력
 			index_next = index_start;
 		}
 	}
