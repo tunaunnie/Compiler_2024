@@ -1,3 +1,9 @@
+ï»¿/*
+	hash ê°’ì„ ê³„ì‚°í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ëŠ” 'ì œì‚°ë²•'ì„ ì‚¬ìš©
+	ê³¼ì œì— ì •ì˜ë˜ì§€ ì•Šì€ ë‚´ìš©ì— ëŒ€í•´ì„œ ì •ì˜
+	ì¤‘ë³µëœ ì‹ë³„ìê°€ ì…ë ¥ëœ ê²½ìš°, string poolì— "Already exists"ê°€ ì¶œë ¥ë˜ê³  symbol tableê³¼ hash tableì—ëŠ” ì €ì¥ë˜ì§€ ì•ŠëŠ”ë‹¤.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -5,211 +11,284 @@
 #include "STMain.h"
 #include "HashFunc.h"
 
-char separators[] = " ,;\t\n\r\n";
-char str_pool[100];
-int sym_table[SYM_TABLE_SIZE][2];
+char separators[] = " ,;\t\n\r\n"; // êµ¬ë¶„ì
+char str_pool[100]; // string pool
+int sym_table[SYM_TABLE_SIZE][2]; // symbol table 2ì°¨ì› ë°°ì—´ ìƒì„±
 
 typedef struct HTentry* HTpointer;
-typedef struct HTentry {
-    int index;
-    HTpointer next;
-}HTentry;
+typedef struct HTentry
+{
+	int index;
+	HTpointer next;
+} HTentry;
 
 HTpointer HT[HASH_TABLE_SIZE];
 
+// symbol tableì—ì„œ ì‹ë³„ì ê²€ìƒ‰ í•¨ìˆ˜
+bool lookup_sym_table(int cur_max_index, int cur_start_index)
+{
+	for (int i = 0; i < cur_max_index; i++) {
 
-// ÇØ½Ã Å×ÀÌºí¿¡¼­ Ç×¸ñÀ» Ã£´Â ÇÔ¼ö
-HTpointer lookup_hash_table(int id_index, int hscode) {
-    HTpointer entry = HT[hscode];
-
-    while (entry != NULL) {
-        if (strcmp(str_pool + sym_table[entry->index][0], str_pool + id_index) == 0) {
-            return entry; // Ã£Àº Ç×¸ñ ¹İÈ¯
-        }
-        entry = entry->next;
-    }
-    return NULL; // Ç×¸ñÀ» Ã£Áö ¸øÇÑ °æ¿ì
+		// symbol tableì˜ ê° í•­ëª©ì„ ìˆœíšŒí•˜ë©° ì£¼ì–´ì§„ ì‹ë³„ìì™€ ì¼ì¹˜í•˜ëŠ”ì§€ ê²€ì‚¬
+		if (strcmp(str_pool + sym_table[i][0], str_pool + cur_start_index) == 0)
+		{
+			return true; // ì‹ë³„ìê°€ ë°œê²¬ë˜ë©´ true ë°˜í™˜
+		}
+	}
+	return false; // ì‹ë³„ìê°€ ë°œê²¬ë˜ì§€ ì•Šìœ¼ë©´ false ë°˜í™˜
 }
 
-void add_hash_table(int id_index, int hscode) {
+// hash tableì—ì„œ ì‹ë³„ì ê²€ìƒ‰ í•¨ìˆ˜
+HTpointer lookup_hash_table(int id_index, int hscode)
+{
+	HTpointer entry = HT[hscode];
 
-    HTpointer newEntry = (HTpointer)malloc(sizeof(HTentry));
-    if (newEntry == NULL) {
-        printf("¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
-        exit(1);
-    }
-    newEntry->index = id_index;
-    newEntry->next = NULL;
-
-    // Hash Table¿¡ Ãß°¡
-    if (HT[hscode] == NULL) {
-        HT[hscode] = newEntry;
-    }
-    else {
-        // ÈÄ¹æ¹ıÀ¸·Î Ãß°¡
-        newEntry->next = HT[hscode];
-        HT[hscode] = newEntry;
-    }
+	while (entry != NULL)
+	{
+		// í•´ë‹¹ hash table í•­ëª©ì˜ symbol table ì¸ë±ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ë¬¸ìì—´ì„ ë¹„êµí•˜ì—¬ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸
+		if (strcmp(str_pool + sym_table[entry->index][0], str_pool + id_index) == 0)
+		{
+			return entry; // ì‹ë³„ìê°€ ë°œê²¬ë˜ë©´ ì°¾ì€ í•­ëª© ë°˜í™˜
+		}
+		entry = entry->next; // ë‹¤ìŒ í•­ëª©ìœ¼ë¡œ ì´ë™
+	}
+	return NULL; // í•­ëª©ì„ ì°¾ì§€ ëª»í•œ ê²½ìš°
 }
 
+// hash tableì— ì‹ë³„ì ì¶”ê°€ í•¨ìˆ˜
+void add_hash_table(int id_index, int hscode)
+{
+	// ìƒˆ í•­ëª© ìƒì„± ë° ì´ˆê¸°í™”
+	HTpointer newEntry = (HTpointer)malloc(sizeof(HTentry));
+	if (newEntry == NULL)
+	{
+		printf("ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
+		exit(1);
+	}
+	newEntry->index = id_index;
+	newEntry->next = NULL;
 
-void init_sym_table() {
-    int i;
-    for (i = 0; i < SYM_TABLE_SIZE; i++) {
-        sym_table[i][0] = -1;
-        sym_table[i][1] = -1;
-    }
+	// hash Tableì— ì¶”ê°€
+	if (HT[hscode] == NULL)
+	{
+		HT[hscode] = newEntry;
+	}
+	else
+	{ // ë§Œì•½ ì´ë¯¸ ì¡´ì¬í•œë‹¤ë©´, í›„ìœ„ë²•ìœ¼ë¡œ ì¶”ê°€
+		newEntry->next = HT[hscode];
+		HT[hscode] = newEntry;
+	}
 }
 
-void print_sym_table() { //symbol table Ãâ·ÂÇÏ´Â ÇÔ¼ö
-    int i;
-    printf("\nSymbol Table\n");
-    printf("Index\tLength\tSymbol\n");
-    for (i = 0; i < SYM_TABLE_SIZE; i++) {
-        if (sym_table[i][0] != -1) {
-            printf("%d\t%d\t%s\n", sym_table[i][0], sym_table[i][1], str_pool + sym_table[i][0]);
-        }
-    }
+// symbol table ì´ˆê¸°í™” í•¨ìˆ˜ (ë¹„ì–´ìˆëŠ” tableì¸ì§€ ì•„ë‹Œì§€ í™•ì¸)
+void init_sym_table()
+{
+	int i;
+	for (i = 0; i < SYM_TABLE_SIZE; i++)
+	{
+		sym_table[i][0] = -1;
+		sym_table[i][1] = -1;
+	}
 }
 
-void print_hash_table() {
-    printf("\n [[Hash Table]] \n");
-    printf("---------------------\n");
+// symbol table ì¶œë ¥ í•¨ìˆ˜
+void print_sym_table()
+{
+	int i;
 
-    for (int i = 0; i < HASH_TABLE_SIZE; i++) {
-        if (HT[i] != NULL) {
-            printf("Hash Code %d: ", i);
-            HTpointer current = HT[i];
+	printf("\n    [[Symbol Table]]    \n");
+	printf("--------------------------\n");
+	printf("Index\tLength\tSymbol\n");
 
-            while (current != NULL) {
-                printf("%s -> ", str_pool + sym_table[current->index][0]);
-                current = current->next;
-            }
-            printf("\n");
-        }
-    }
+	for (i = 0; i < SYM_TABLE_SIZE; i++)
+	{
+		if (sym_table[i][0] != -1)
+		{
+			printf("%d\t%d\t%s\n", sym_table[i][0], sym_table[i][1], str_pool + sym_table[i][0]);
+		}
+	}
 }
 
-int main() {
-    FILE* fp;
-    int result;
-    int c;
-    int index_start = 0;
-    int index_next = 0;
-    int index = 0;
-    int hash_value = -1;
+// hash table ì¶œë ¥ í•¨ìˆ˜
+void print_hash_table()
+{
+	printf("\n    [[Hash Table]]    \n");
+	printf("--------------------------\n");
 
-    init_sym_table();
+	for (int i = 0; i < HASH_TABLE_SIZE; i++)
+	{
+		if (HT[i] != NULL)
+		{
+			printf("Hash Code %d: ", i);
+			HTpointer current = HT[i];
 
-    result = fopen_s(&fp, "example.txt", "r"); // "example.txt" ÆÄÀÏ ¿­±â
-    if (result != 0) {
-        printf("ÆÄÀÏ ¿­±â ½ÇÆĞ(%d)\n", result);
-        return -1;
-    }
+			while (current != NULL)
+			{
+				printf("%s -> ", str_pool + sym_table[current->index][0]);
+				current = current->next;
+			}
+			printf("\n");
+		}
+	}
+}
 
-    while ((c = fgetc(fp)) != EOF) { // ÆÄÀÏ ³¡±îÁö ¹®ÀÚ ÀĞ±â
+int main()
+{
+	FILE* fp;
+	int result;
+	int c; // ì½ì€ ë¬¸ìë¥¼ ì €ì¥í•  ë³€ìˆ˜
+	int index_start = 0; // í˜„ì¬ ë“¤ì–´ì˜¨ ì‹ë³„ìì˜ ì²«ë²ˆì§¸ ìœ„ì¹˜
+	int index_next = 0; // ë‹¤ìŒì— ë“¤ì–´ì˜¬ ì‹ë³„ìê°€ ì €ì¥ë˜ì–´ì•¼í•˜ëŠ” ìœ„ì¹˜
+	int index = 0;
+	int hash_value = -1;
 
-        if (index_next >= sizeof(str_pool) - 1) {
-            printf("Error - String Pool Å©±â¸¦ ÃÊ°úÇß½À´Ï´Ù.\n");
-            while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} //ÀÌ ¹®ÀÚ¿­Àº ÀúÀåÇÏÁö ¾Ê°í °Ç³Ê¶Ü.
-            index_next = index_start; //ÀÎµ¦½º ÃÊ±âÈ­
-            //continue; //´ÙÀ½ ¹®ÀÚ·Î ÀÌµ¿ÇØ¼­ °è¼Ó ÁøÇàÇÔ.
-            fclose(fp); // ÆÄÀÏ ´İ±â
-            break; // ÇÁ·Î±×·¥ Á¾·á
-        }
+	init_sym_table();
 
-        else if (strchr(separators, c) != NULL) {
-            // ±¸ºĞÀÚ¸¦ ¸¸³ª°Å³ª ¹öÆÛ Å©±â Á¦ÇÑ¿¡ µµ´ŞÇßÀ» ¶§
-            if (index_start < index_next) { // ¹öÆÛ¿¡ ³»¿ëÀÌ ÀÖÀ» °æ¿ì¸¸ Ãâ·Â
-                str_pool[index_next] = '\0'; // ¹®ÀÚ¿­ Á¾·á
+	result = fopen_s(&fp, "example.txt", "r"); // "example.txt" ì½ê¸° ëª¨ë“œë¡œ ì—´ê¸°
+	if (result != 0)
+	{
+		printf("(%d)\n", result);
+		return -1;
+	}
 
-                /* 15ÀÚ ¾È ³Ñ°Ô Ãß°¡ÇÑ ºÎºĞ*/
-                int str_len = index_next - index_start; //µé¾î¿Â ¹®ÀÚ¿­ ±æÀÌ °è»ê
-                if (str_len > MAX_STRING_LENGTH) { //15ÀÚ º¸´Ù ½Äº°ÀÚ ±æÀÌ°¡ Å©´Ù¸é
-                    printf("Error - Inserted String is longer than 15 words\n");
+	while ((c = fgetc(fp)) != EOF)
+	{ // íŒŒì¼ ëê¹Œì§€ ë¬¸ì ì½ê¸°
 
-                    while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} //ÀÌ ¹®ÀÚ¿­Àº ÀúÀåÇÏÁö ¾Ê°í °Ç³Ê¶Ü.
-                    index_next = index_start; //ÀÎµ¦½º ÃÊ±âÈ­
-                    continue; //´ÙÀ½ ¹®ÀÚ·Î ÀÌµ¿ÇØ¼­ °è¼Ó ÁøÇàÇÔ.
-                }
+		/* string poolì˜ í¬ê¸°ë¥¼ ì´ˆê³¼í•˜ëŠ” ê²½ìš° */
+		if (index_next >= sizeof(str_pool) - 1)
+		{
+			printf("Error - String Pool full.\n"); // ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
+			while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} // ì´ ë¬¸ìì—´ì€ ì €ì¥í•˜ì§€ ì•Šê³  ê±´ë„ˆëœ€
+			index_next = index_start; // ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+			fclose(fp); // íŒŒì¼ ë‹«ê¸°
+			break; // í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+		}
+		else if (strchr(separators, c) != NULL) // êµ¬ë¶„ìë¥¼ ë§Œë‚¬ì„ ë•Œ,
+		{
 
-                str_pool[index_next] = '\0';
+			if (index_start < index_next)
+			{
+				str_pool[index_next] = '\0'; // ë¬¸ìì—´ ì¢…ë£Œ
 
-                if (str_pool[index_start] >= '0' && str_pool[index_start] <= '9') { // ¹®ÀÚ¿­ÀÌ ¼ıÀÚ·Î ½ÃÀÛÇÒ °æ¿ì
-                    printf("Error - start with digit (%s)\n", str_pool + index_start); // ¿¡·¯ Ãâ·Â
-                    index_next = index_start; // ¹öÆÛ ÀÎµ¦½º ÃÊ±âÈ­
-                }
-                else {
-                    int i = 0;
-                    int hash_key = 0;
-                    sym_table[index][0] = index_start;
-                    sym_table[index++][1] = (int)strlen(str_pool + index_start);
+				/* ì‹ë³„ìì˜ ê¸¸ì´ê°€ ìµœëŒ€ ê¸¸ì´ 15ìë¥¼ ë„˜ëŠ” ê²½ìš° */
+				int str_len = index_next - index_start; // ë“¤ì–´ì˜¨ ë¬¸ìì—´ ê¸¸ì´ ê³„ì‚°
 
-                    while (str_pool[index_start + i] != '\0') { //¸¶Áö¸·ÀÌ NULLÀÌ ¾Æ´Ñ °æ¿ì
-                        hash_key += str_pool[index_start + i++];
-                    }
-                    hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
+				if (str_len >= MAX_STRING_LENGTH) // 15ìë³´ë‹¤ ì‹ë³„ì ê¸¸ì´ê°€ í¬ë‹¤ë©´,
+				{
+					printf("Error - Inserted String is longer than 15 words\n"); // ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
 
-                    HTpointer htp = lookup_hash_table(index_start, hash_value);
-                    if (htp == NULL) {
-                        add_hash_table(index - 1, hash_value);
-                        printf("%s (Hash: %d)\n", str_pool + sym_table[index - 1][0], hash_value); // ¹öÆÛÀÇ ³»¿ëÀ» È­¸é¿¡ Ãâ·Â
-                        index_start = ++index_next; // ¹öÆÛ ÀÎµ¦½º ÃÊ±âÈ­
-                    }
-                    else {
-                        printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value); // ¹öÆÛÀÇ ³»¿ëÀ» È­¸é¿¡ Ãâ·Â
-                        while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} //ÀÌ ¹®ÀÚ¿­Àº ÀúÀåÇÏÁö ¾Ê°í °Ç³Ê¶Ü.
-                        index_next = index_start; //ÀÎµ¦½º ÃÊ±âÈ­
-                        index_start = ++index_next; // ¹öÆÛ ÀÎµ¦½º ÃÊ±âÈ­
-                    }
-                }
-            }
-            if (strchr(separators, c) == NULL) {
-                str_pool[index_next++] = (char)c; // ±¸ºĞÀÚ°¡ ¾Æ´Ñ ¹®ÀÚ¸¦ ¹öÆÛ¿¡ ÀúÀå
-            }
-            continue; // ´ÙÀ½ ¹®ÀÚ·Î ÀÌµ¿
-        }
-        // ÀĞÀº ¹®ÀÚ°¡ Çã¿ëµÇÁö ¾ÊÀº ¹®ÀÚÀÎ °æ¿ì. Áß°£¿¡¶óµµ µé¾î¿À¸é ¸·¾Æ¾ß ÇÔ.
-        if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || (c == '_')))
-        {
-            printf("Error - usuage of unable character : %c\n", c);
-            while ((c = fgetc(fp)) != EOF && !(strchr(separators, c) != NULL)) {
-            }
-            index_next = index_start;
-            continue;
-        }
-        // ÀĞÀº ¹®ÀÚ°¡ ±¸ºĞÀÚ°¡ ¾Æ´Ñ Çã¿ëµÈ ¹®ÀÚÀÎ °æ¿ì
-        else
-            str_pool[index_next++] = (char)c;
-    }
+					index_next = index_start; // ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+					continue;
+				}
 
-    if (index_start < index_next) { // ¸¶Áö¸· ¹®ÀÚ¿­ Ãâ·Â
-        int i = 0;
-        int hash_key = 0;
+				/* ì‹ë³„ìì˜ ì²« ê¸€ìê°€ ìˆ«ìë¡œ ì‹œì‘í•˜ëŠ” ê²½ìš° */
+				if (str_pool[index_start] >= '0' && str_pool[index_start] <= '9')
+				{
+					printf("Error - start with digit (%s)\n", str_pool + index_start); // ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
+					index_next = index_start; // ë²„í¼ ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+				}
+				else
+				{
+					// hash key ê³„ì‚°
+					int i = 0;
+					int hash_key = 0;
+					while (str_pool[index_start + i] != '\0')
+					{
+						hash_key += str_pool[index_start + i++]; // ì£¼ì–´ì§„ ë¬¸ìì—´ì˜ ê° ë¬¸ìì˜ ì•„ìŠ¤í‚¤ ì½”ë“œë¥¼ ëˆ„ì í•˜ì—¬ hash key ìƒì„±
+					}
+					hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE); // ìƒì„±ëœ hash keyë¥¼ hash tableì˜ í¬ê¸°ë¡œ ë‚˜ëˆ„ì–´ hash ê°’ìœ¼ë¡œ ë³€ê²½
 
-        str_pool[index_next] = '\0'; // ¹®ÀÚ¿­ Á¾·á
-        sym_table[index][0] = index_start;
-        sym_table[index++][1] = (int)strlen(str_pool + index_start);
-
-        while (str_pool[index_start + i] != '\0') {
-            hash_key += str_pool[index_start + i++];
-        }
-        hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
+				// ì¤‘ë³µëœ ì‹ë³„ì ê²€ì‚¬
+					bool isDuplicate = lookup_sym_table(index, index_start);
+					if (!isDuplicate)
+					{
+						// ì¤‘ë³µëœ ì‹ë³„ìê°€ ì—†ìœ¼ë©´, symbol tableì— ì‹ë³„ì ì¶”ê°€
+						sym_table[index][0] = index_start;
+						sym_table[index++][1] = (int)strlen(str_pool + index_start);
 
 
-        HTpointer htp = lookup_hash_table(index_start, hash_value);
-        if (htp == NULL) {
-            add_hash_table(index_start, hash_value);
-            printf("%s (Hash: %d)\n", str_pool + index_start, hash_value); // ¹öÆÛÀÇ ³»¿ëÀ» È­¸é¿¡ Ãâ·Â
-        }
-        else {
-            printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value); // ¹öÆÛÀÇ ³»¿ëÀ» È­¸é¿¡ Ãâ·Â
-        }
-    }
 
-    print_sym_table();
-    print_hash_table();
+						HTpointer htp = lookup_hash_table(index_start, hash_value); // í•´ë‹¹ hash ê°’ìœ¼ë¡œ hash tableì„ ì¡°íšŒí•˜ì—¬ ì¤‘ë³µ í™•ì¸
 
-    fclose(fp); // ÆÄÀÏ ´İ±â
-    return 0;
+						if (htp == NULL)
+						{
+							// ì¤‘ë³µì´ ì—†ìœ¼ë©´, symbol tableì— ì‹ë³„ìë¥¼ ì¶”ê°€í•˜ê³ , hash tableì—ë„ ì¶”ê°€
+							add_hash_table(index - 1, hash_value);
+							printf("%s (Hash: %d)\n", str_pool + sym_table[index - 1][0], hash_value); // ì¶”ê°€ëœ ì‹ë³„ìì™€ í•´ë‹¹í•˜ëŠ” hash ê°’ ì¶œë ¥
+							index_start = ++index_next; // ë‹¤ìŒ ì‹ë³„ìì˜ ì‹œì‘ ì¸ë±ìŠ¤ë¥¼ ì„¤ì •
+
+						}
+					}
+					else
+					{
+						printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value);
+						index_next = index_start;
+					}
+				}
+			}
+
+			// êµ¬ë¶„ìê°€ ì•„ë‹Œ ë¬¸ìì¸ ê²½ìš°
+			if (strchr(separators, c) == NULL)
+			{
+				str_pool[index_next++] = (char)c; // string poolì— ì €ì¥
+			}
+			continue; // ë‹¤ìŒ ë¬¸ìë¡œ ì´ë™
+		}
+
+		/* ì‹ë³„ìì— ì˜ì–´ ëŒ€ì†Œë¬¸ì, ë°‘ì¤„ë¬¸ì, ìˆ«ì, êµ¬ë¶„ìë¥¼ ì œì™¸í•œ ë‹¤ë¥¸ ë¬¸ìê°€ ì…ë ¥ë  ê²½ìš° */
+		if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || (c == '_')))
+		{
+			printf("Error - usuage of unable character : %c\n", c); // ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
+			while ((c = fgetc(fp)) != EOF && !(strchr(separators, c) != NULL)) {}
+			index_next = index_start;
+			continue;
+		}
+
+		else
+			str_pool[index_next++] = (char)c;
+	}
+
+	if (index_start < index_next)
+	{ // ë§ˆì§€ë§‰ ë¬¸ìì—´ ì¶œë ¥
+		int i = 0;
+		int hash_key = 0;
+		int str_len = index_next - index_start; // ë“¤ì–´ì˜¨ ë¬¸ìì—´ ê¸¸ì´ ê³„ì‚°
+
+			// hash key ê³„ì‚°
+		while (str_pool[index_start + i] != '\0')
+		{
+			hash_key += str_pool[index_start + i++];
+		}
+		hash_value = divisionMethod(hash_key, HASH_TABLE_SIZE);
+
+		// ì¤‘ë³µëœ ì‹ë³„ì ê²€ì‚¬
+		bool isDuplicate = lookup_sym_table(index, index_start);
+		if (!isDuplicate)
+		{
+			// ì¤‘ë³µëœ ì‹ë³„ìê°€ ì—†ìœ¼ë©´, symbol tableì— ì‹ë³„ì ì¶”ê°€
+			str_pool[index_next] = '\0';
+			sym_table[index][0] = index_start;
+			sym_table[index++][1] = (int)strlen(str_pool + index_start);
+
+
+			HTpointer htp = lookup_hash_table(index_start, hash_value);
+			if (htp == NULL)
+			{
+				// ì¤‘ë³µì´ ì—†ìœ¼ë©´, symbol tableì— ì‹ë³„ìë¥¼ ì¶”ê°€í•˜ê³ , hash tableì—ë„ ì¶”ê°€
+				add_hash_table(index_start, hash_value);
+				printf("%s (Hash: %d)\n", str_pool + index_start, hash_value); // ë²„í¼ì˜ ë‚´ìš©ì„ í™”ë©´ì— ì¶œë ¥
+			}
+		}
+		else
+		{
+			printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value);
+			index_next = index_start;
+		}
+	}
+
+	print_sym_table();
+	print_hash_table();
+
+	fclose(fp); //íŒŒì¼ ë‹«ê¸°
+	return 0;
 }
