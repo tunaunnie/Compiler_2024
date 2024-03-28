@@ -1,7 +1,9 @@
 ﻿/*
-	hash 값을 계산하기 위한 함수는 '제산법'을 사용
-	과제에 정의되지 않은 내용에 대해서 정의
-	중복된 식별자가 입력된 경우, string pool에 "Already exists"가 출력되고 symbol table과 hash table에는 저장되지 않는다.
+	- hash 값을 계산하기 위한 함수는 '제산법'을 사용함
+	- 동일한 식별자가 입력된 경우, 
+		1. 후방법으로 구현함.
+		2. string pool에 "Already exists"가 출력됨.
+		3. symbol table과 hash table에는 저장되지 않고 출력도 되지 않음.
 */
 
 #include <stdio.h>
