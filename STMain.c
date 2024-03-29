@@ -163,7 +163,7 @@ int main()
 			while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {} // 이 문자열은 저장하지 않고 건너뜀
 			index_next = index_start; // 인덱스 초기화
 			fclose(fp); // 파일 닫기
-			break; // 프로그램 종료
+			break;
 		}
 		else if (strchr(separators, c) != NULL) // 구분자를 만났을 때,
 		{
@@ -214,7 +214,7 @@ int main()
 
 						if (htp == NULL)
 						{
-							// 중복이 없으면, symbol table에 식별자를 추가하고, hash table에도 추가
+							// 중복이 없으면, hash table에 추가
 							add_hash_table(index - 1, hash_value);
 							printf("%s (Hash: %d)\n", str_pool + sym_table[index - 1][0], hash_value); // 추가된 식별자와 해당하는 hash 값 출력
 							index_start = ++index_next; // 다음 식별자의 시작 인덱스를 설정
