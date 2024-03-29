@@ -303,7 +303,7 @@ int main()
 		//중복 식별자가 있는 경우
 		else
 		{
-			printf("%s (Already exists)\n", str_pool + index_start); // 에러 메시지 출력
+			printf("%s (Already exists. Hash: %d)\n", str_pool + index_start, hash_value); // 에러 메시지 출력
 			index_next = index_start;
 		}
 	}
