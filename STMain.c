@@ -262,11 +262,6 @@ int main()
                 }
             }
 
-            // 구분자가 아닌 문자인 경우
-            if (strchr(separators, c) == NULL)
-            {
-                str_pool[index_next++] = (char)c; // string pool에 저장
-            }
             continue; // 다음 문자로 이동
         }
 
