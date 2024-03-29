@@ -1,7 +1,7 @@
 /*
 [ COMPILER ASSIGNMENT 01 _ CONTRIBUTION ]
-1. 20 JAEUN JEON (33%)
-2. 20 YEEUN LEE (33%)
+1. 2076362 JAEUN JEON (33%)
+2. 2076316 YEEUN LEE (33%)
 3. 2176211 JIWON YANG (33%)
 
 */
@@ -214,7 +214,6 @@ int main()
                 {
                     printf("Error - Inserted String is longer than 15 words\n"); // 에러 메시지 출력
                     for (int i = index_start; i < index_next; i++) { str_pool[i] = NULL; }
-                    /*while ((c = fgetc(fp)) != EOF && strchr(separators, c) == NULL) {}*/
                     index_next = index_start; // 인덱스 초기화
                     continue;
                 }
@@ -243,8 +242,6 @@ int main()
                         // 중복된 식별자가 없으면, symbol table에 식별자 추가
                         sym_table[index][0] = index_start;
                         sym_table[index++][1] = (int)strlen(str_pool + index_start);
-
-
 
                         HTpointer htp = lookup_hash_table(index_start, hash_value); // 해당 hash 값으로 hash table을 조회하여 중복 확인
 
