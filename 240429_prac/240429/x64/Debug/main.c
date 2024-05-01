@@ -97,7 +97,7 @@ int main()
               {
                   printtoken(line_num, "TIDENT", yytext, sym_table_index - 1);  break;   //already exist거나 15자 초과면 출력하면 안되니까..
               }
-              else flag = 0;
+              else { flag = 0; break;  }
           }
           case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break;
           case TERROR:  break;
