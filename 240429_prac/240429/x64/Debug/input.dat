@@ -1,17 +1,4 @@
-int sum_int(int a, int b);
-
-float sum_float(float a, float b);
-
-int main(void) {
-
-   int first = 24;
-
-   int second = 8;
-
-   int result = sum(first, second);
-
-   print(sum_float(12.34, 0.02);
-
-   return 0;
-
-}
+count if else
+ident 123
+123hi
+count count const
