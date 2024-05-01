@@ -18,3 +18,4 @@ HTpointer HT[HASH_TABLE_SIZE];
 
 extern int sym_table_index;
 extern int flag;
+extern int error_flag;

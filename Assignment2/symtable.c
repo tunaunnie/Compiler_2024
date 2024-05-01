@@ -3,8 +3,6 @@
 #include "tn.h"
 #include "glob.h"
 
-char separators[] = " ,;\t\n\r\n";
-
 int index_start = 0;
 int index_next = 0;
 int hash_value = 0;

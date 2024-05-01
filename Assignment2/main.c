@@ -49,7 +49,7 @@ void printHT() {
 
 int main()
 {
-	enum tokentypes tn;  // token types
+    enum tokentypes tn;  // token types
     initST();
 
     int line_num = 1;
@@ -95,10 +95,9 @@ int main()
             }
             else { flag = 0; break; }
         }
-        case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break; //숫자로 시
-        case TERROR: //허용하지 않은 문자를 포함하고 있는 경우
-            reporterror(line_num, yytext, "TERROR");
-            break;
+        case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break;
+        case TERROR1: reporterror1(line_num, yytext); break;         //illegal 문자 에러 처리
+        case TERROR2: reporterror2(line_num, yytext);  break;              // 숫자로 시작하는 에러 처리
         }
     }
 
