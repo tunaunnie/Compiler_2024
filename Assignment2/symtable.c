@@ -60,6 +60,7 @@ void Symtable(int line_num, char* yytext, char* type) {
     // Identifier의 길이가 15자를 초과하면 오류 처리
     if (length > 15) {
         printf("Error - Identifier length exceeds 15 characters.\n");
+        flag = 1;
         return; // 오류 처리 후 함수 종료
     }
 

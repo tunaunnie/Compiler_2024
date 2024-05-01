@@ -19,6 +19,7 @@ scanner.l
 "return"                    return(TRETURN);
 "void"                      return(TVOID);
 "while"                     return(TWHILE);
+"="                        return(TEQUAL);
 "=="                        return(TEQUAL);
 "!="                        return(TNOTEQU);
 "<="                        return(TLESS);
@@ -36,6 +37,8 @@ scanner.l
 "*="                        return(TMULASSIGN);
 "/="                        return(TDIVASSIGN);
 "%="                        return(TMODASSIGN);
+";"                         return(TSEMICOLON);
+","                         return(TCOMMA);
 [A-Za-z_][A-Za-z0-9_]*      return(TIDENT); 
 [0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return TNUMBER;   // 소수점을 포함한 실수 형식 숫자
 [0-9]+([eE][-+]?[0-9]+)              return TNUMBER;   // 지수 표기법 숫자
@@ -48,8 +51,8 @@ scanner.l
 "//".*                      ;
 [ \t]                       ;
 "\n"                        return(LINEPROCESS);
-[0-9]+[A-Za-z0-9_]*         { return TERROR1; }     /* 숫자로 시작하는 경우 */
-[A-Za-z0-9_]*[^A-Za-z0-9_ \t\n]+[A-Za-z0-9_]*  { return TERROR2; }  /* 허용되지 않은 문자 포함하는 경우 */
+
+.  { return TERROR2; }  /* 허용되지 않은 문자 포함하는 경우 */
 
 %%
 

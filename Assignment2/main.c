@@ -90,6 +90,8 @@ int main()
         case TPAREN: printtoken(line_num, "TPAREN", yytext, -1); break;
         case TLBRACE: printtoken(line_num, "TLBRACE", yytext, -1); break;
         case TRBRACE: printtoken(line_num, "TRBRACE", yytext, -1); break;
+        case TSEMICOLON:printtoken(line_num, "TSEMICOLON", yytext, -1); break;
+        case TCOMMA:printtoken(line_num, "TCOMMA", yytext, -1); break;
         case TIDENT: {                                                                //식별자인 경우만 sym_table에 저장. 식별자 저장 후, 그거랑 별개로 매 줄마다 출력하는 printtoken 해줌
             Symtable(line_num, yytext, "TIDENT");
             if (flag != 1)
