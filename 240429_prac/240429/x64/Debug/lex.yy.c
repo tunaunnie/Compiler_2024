@@ -796,7 +796,7 @@ return(TASSIGN);
 case 27:
 YY_RULE_SETUP
 #line 46 "scanner.l"
-return(TIDENT);            //길이에러 발생. illeagal 발생X. overflow 발생.
+return(TIDENT);            //illeagal 여기서 처리 X. overflow 처리 O. 길이에러 처리 O. 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
@@ -826,7 +826,7 @@ return(LINEPROCESS);
 case 33:
 YY_RULE_SETUP
 #line 52 "scanner.l"
-return(TERROR);
+return(TERROR);            //illegal 처리 여기서 ?
 	YY_BREAK
 case 34:
 YY_RULE_SETUP

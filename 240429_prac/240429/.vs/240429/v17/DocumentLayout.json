@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Study\\Compiler\\240429_prac\\240429\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\scanner.l||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\scanner.l||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\globe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\globe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\tn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\tn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\symtable.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\symtable.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\scanner.l||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\scanner.l||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\tn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\tn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\globe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{61E023E7-FF37-4298-89E5-186F53898713}|240429\\240429.vcxproj|solutionrelative:x64\\Debug\\globe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "tn.h",
               "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\tn.h",
               "RelativeDocumentMoniker": "x64\\Debug\\tn.h",
               "ToolTip": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\tn.h",
               "RelativeToolTip": "x64\\Debug\\tn.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAB4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-29T21:07:58.235Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "globe.h",
               "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\globe.h",
               "RelativeDocumentMoniker": "x64\\Debug\\globe.h",
@@ -60,41 +60,62 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "scanner.l",
               "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\scanner.l",
               "RelativeDocumentMoniker": "x64\\Debug\\scanner.l",
               "ToolTip": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\scanner.l",
               "RelativeToolTip": "x64\\Debug\\scanner.l",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAARAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-04-29T08:05:25.381Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "main.c",
-              "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c",
-              "RelativeDocumentMoniker": "x64\\Debug\\main.c",
-              "ToolTip": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c",
-              "RelativeToolTip": "x64\\Debug\\main.c",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAEwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-04-29T08:05:26.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "symtable.c",
               "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\symtable.c",
               "RelativeDocumentMoniker": "x64\\Debug\\symtable.c",
               "ToolTip": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\symtable.c",
               "RelativeToolTip": "x64\\Debug\\symtable.c",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAAAAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAE4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-04-29T08:25:55.557Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "b07fa544-aa54-4285-b45b-49ba7d8ea677",
+        "Display": 0,
+        "X": 948,
+        "Y": 39,
+        "Width": 837,
+        "Height": 751,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c",
+              "RelativeDocumentMoniker": "x64\\Debug\\main.c",
+              "ToolTip": "C:\\Study\\Compiler\\240429_prac\\240429\\x64\\Debug\\main.c",
+              "RelativeToolTip": "x64\\Debug\\main.c",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-04-29T08:05:26.711Z",
               "EditorCaption": ""
             }
           ]

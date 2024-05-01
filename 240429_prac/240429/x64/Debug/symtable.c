@@ -64,6 +64,7 @@ void symtable(int line_num, char* yytext, char* type) {
         printf("String Pool Overflow\n");
         print_sym_table();
         print_hash_table();
+        flag = 1;
 
         return 1;
     }
@@ -72,6 +73,7 @@ void symtable(int line_num, char* yytext, char* type) {
     if (length > 15) {
         printf("Error - Exceed\n");
         index_next = index_start;
+        flag = 1;
 
         return 1;
     }
@@ -110,9 +112,9 @@ void symtable(int line_num, char* yytext, char* type) {
     else { //똑같은 단어 이미 있음
         printf("%d\t%s (already exists)\n", hash_value, str_pool + index_start);
         index_next = index_start; // 버퍼에 단어 저장했던 거 초기화함 (다시 덮어쓸것!)
+        flag = 1;
     }
 	
-
     return 1;
 }
 

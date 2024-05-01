@@ -1,11 +1,107 @@
-﻿  lex.yy.c
-C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(4,18): warning C4013: 'yylex'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  (소스 파일 '../x64/Debug/lex.yy.c'을(를) 컴파일하는 중)
-  
-/lex.yy.c(1032,3): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 '../x64/Debug/lex.yy.c'을(를) 컴파일하는 중)
-  
-/lex.yy.c(1199,28): warning C4244: '초기화 중': '__int64'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 '../x64/Debug/lex.yy.c'을(를) 컴파일하는 중)
-  
-  240429.vcxproj -> C:\Study\Compiler\240429_prac\240429\x64\Debug\240429.exe
+﻿  main.c
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(4,35): error C2065: 'SYM_TABLE_SIZE': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(5,19): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(5,18): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(6,19): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(6,18): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(13,5): warning C4013: 'printf'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(14,12): warning C4129: '[': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(16,35): error C2065: 'SYM_TABLE_SIZE': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(17,23): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(17,22): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,56): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,55): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,73): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,72): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,89): error C2065: 'str_pool': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,101): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,100): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,118): error C2065: 'sym_table': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(18,117): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(25,40): error C2065: 'HASH_TABLE_SIZE': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(26,19): error C2065: 'HTpointer': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(26,19): error C2146: 구문 오류: ';'이(가) 'entry' 식별자 앞에 없습니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(26,25): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(26,30): error C2065: 'HT': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(26,29): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(27,19): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(27,26): error C2065: 'NULL': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(29,26): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(29,33): error C2065: 'NULL': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(30,39): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(30,41): error C2223: '->index' 왼쪽은 구조체/공용 구조체를 가리켜야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(31,23): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(31,30): error C2065: 'entry': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(31,32): error C2223: '->next' 왼쪽은 구조체/공용 구조체를 가리켜야 합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(45,18): warning C4013: 'yylex'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(45,34): error C2065: 'TEOF': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(47,26): error C2065: 'LINEPROCESS': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(47,36): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(48,22): error C2065: 'TCONST': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(48,24): warning C4013: 'symtable'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(48,41): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(48,49): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(49,22): error C2065: 'TELSE': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(49,41): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(49,49): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(50,20): error C2065: 'TIF': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(50,39): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(50,47): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(51,21): error C2065: 'TINT': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(51,40): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(51,48): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(52,24): error C2065: 'TRETURN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(52,43): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(52,51): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(53,22): error C2065: 'TVOID': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(53,41): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(53,49): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(54,23): error C2065: 'TWHILE': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(54,42): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(54,50): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(55,23): error C2065: 'TEQUAL': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(55,42): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(55,50): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(56,24): error C2065: 'TNOTEQU': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(56,43): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(56,51): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(57,22): error C2065: 'TLESS': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(57,41): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(57,49): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(58,23): error C2065: 'TGREAT': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(58,42): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(58,50): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(59,21): error C2065: 'TAND': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(59,40): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(59,48): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(60,20): error C2065: 'TOR': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(60,39): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(60,47): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(61,21): error C2065: 'TINC': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(61,40): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(61,48): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(62,21): error C2065: 'TDEC': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(62,40): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(62,48): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(63,27): error C2065: 'TADDASSIGN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(63,46): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(63,54): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(64,27): error C2065: 'TSUBASSIGN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(64,46): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(64,54): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(65,27): error C2065: 'TMULASSIGN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(65,46): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(65,54): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(66,27): error C2065: 'TDIVASSIGN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(66,46): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(66,54): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(67,27): error C2065: 'TMODASSIGN': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(67,46): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(67,54): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(68,22): error C2065: 'TPLUS': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(68,41): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(68,49): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(69,23): error C2065: 'TMINUS': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(69,42): error C2065: 'line_num': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(69,50): error C2065: 'yytext': 선언되지 않은 식별자입니다.
+C:\Study\Compiler\240429_prac\240429\x64\Debug\main.c(69,50): error C1003: 오류 수가 100개를 초과했습니다. 컴파일을 중지합니다.

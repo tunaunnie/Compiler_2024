@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "step3_hashfunc.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "hashfunc.h": "c"
     }
 }

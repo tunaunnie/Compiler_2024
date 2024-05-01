@@ -26,3 +26,4 @@ int index_start = 0;
 int index_next = 0;
 int hash_value = 0;
 int sym_table_index = 0;
+int flag = 0;
