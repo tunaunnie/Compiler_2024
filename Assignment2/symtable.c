@@ -61,7 +61,7 @@ void Symtable(int line_num, char* yytext, char* type) {
     if (length > 15) {
         printf("Error - Identifier length exceeds 15 characters.\n");
         flag = 1;
-        return; // 오류 처리 후 함수 종료
+        return 1; // 오류 처리 후 함수 종료
     }
 
     // 식별자를 버퍼에 저장하기 전에 오버플로우 검사
@@ -79,20 +79,21 @@ void Symtable(int line_num, char* yytext, char* type) {
     int hash_value = divisionMethod(yytext, HASH_TABLE_SIZE);
 
     // 해시 테이블에서 식별자 검색
-    HTpointer entry = lookupHT(id_index, hash_value);
+    HTpointer htp = lookupHT(index_start, hash_value);
 
-    if (entry == NULL) {
-        // 신규 식별자인 경우
-        addHT(id_index, hash_value);
+    //똑같은 단어 없었던 경우
+    if (htp == NULL) {
 
-        // 심볼 테이블에 식별자 정보 저장
-        sym_table[sym_table_index][0] = line_num;
-        sym_table[sym_table_index][1] = type;
-        sym_table[sym_table_index][2] = id_index; // str_pool 내 식별자 시작 인덱스
-        sym_table[sym_table_index][3] = length;
-        sym_table_index++;
+        //symtable에 1)str_pool 어디서 단어 시작하는지 2)단어 길이 저장함
+        sym_table[sym_table_index][0] = index_start;
+        sym_table[sym_table_index++][1] = length;
 
+        //hash table에 1)str_pool 어디서 단어 시작하는지 2)해시값 저장함
+        addHT(index_start, hash_value);
+        //printf("%d\t%s\n", hash_value, yytext); // 버퍼의 내용을 화면에 출력
+        index_start = index_next; // 버퍼 인덱스 초기화
     }
+
     /*
     else {
         // 이미 존재하는 식별자인 경우

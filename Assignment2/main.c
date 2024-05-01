@@ -8,19 +8,18 @@ void initST() {
     for (i = 0; i < SYM_TABLE_SIZE; i++) {
         sym_table[i][0] = -1;
         sym_table[i][1] = NULL;
-        sym_table[i][2] = NULL;
-        sym_table[i][3] = NULL;
     }
 }
 
 void printST() {
     printf("\n\n\nSymbol Table:\n");
     int i;
-    printf("\[first line #] \t [type] \t [token] \t [length]\n");
-    printf("--------------------------------------------------------------------\n");
+    printf("[ ST_Index ] \t [ Length ] \t [ Identifier ]\n");
+    printf("----------------------------------------------------------\n");
     for (i = 0; i < SYM_TABLE_SIZE; i++) {
-        if (sym_table[i][0] != -1)
-            printf("%d\t\t%s\t\t%s\t\t%d\n", sym_table[i][0], sym_table[i][1], str_pool + sym_table[i][2], sym_table[i][2]);
+        if (sym_table[i][0] != -1) {
+            printf("%d\t\t%d\t\t%s\n", sym_table[i][0], sym_table[i][1], str_pool + sym_table[i][0]);
+        }
     }
 }
 
@@ -32,6 +31,7 @@ void printtoken(int line_num, char* token_type, char* token_name, int sym_index_
         printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_index_num);
 }
 
+/*
 void printHT() {
     printf("\nHash Table:\n");
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
@@ -46,6 +46,7 @@ void printHT() {
         }
     }
 }
+*/
 
 int main()
 {
@@ -107,6 +108,6 @@ int main()
     }
 
     printST();
-    printHT();
+    //printHT();
     return 0;
 }

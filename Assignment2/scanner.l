@@ -51,7 +51,7 @@ scanner.l
 "//".*                      ;
 [ \t]                       ;
 "\n"                        return(LINEPROCESS);
-
+[0-9]+[A-Za-z0-9_]*         return TERROR1;
 .  { return TERROR2; }  /* 허용되지 않은 문자 포함하는 경우 */
 
 %%
