@@ -61,12 +61,13 @@ void Symtable(int line_num, char* yytext, char* type) {
     if (length > 15) {
         printf("Error - Identifier length exceeds 15 characters.\n");
         flag = 1;
-        return 1; // 오류 처리 후 함수 종료
+        return; // 오류 처리 후 함수 종료
     }
 
     // 식별자를 버퍼에 저장하기 전에 오버플로우 검사
     if (index_next + length + 1 > sizeof(str_pool)) {
         printf("Error - String Pool Overflow\n");
+        flag = 1;
         return; // 오버플로우 처리 후 함수 종료
     }
 

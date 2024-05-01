@@ -19,7 +19,11 @@ scanner.l
 "return"                    return(TRETURN);
 "void"                      return(TVOID);
 "while"                     return(TWHILE);
-"="                        return(TEQUAL);
+"main"                      return(TMAIN);
+"print"                     return(TPRINT);
+";"                         return(TSEMICOLON);
+","                         return(TCOMMA);
+"="                         return(TEQUAL);
 "=="                        return(TEQUAL);
 "!="                        return(TNOTEQU);
 "<="                        return(TLESS);
@@ -37,8 +41,6 @@ scanner.l
 "*="                        return(TMULASSIGN);
 "/="                        return(TDIVASSIGN);
 "%="                        return(TMODASSIGN);
-";"                         return(TSEMICOLON);
-","                         return(TCOMMA);
 [A-Za-z_][A-Za-z0-9_]*      return(TIDENT); 
 [0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return TNUMBER;   // 소수점을 포함한 실수 형식 숫자
 [0-9]+([eE][-+]?[0-9]+)              return TNUMBER;   // 지수 표기법 숫자
