@@ -5,43 +5,49 @@ scanner.l
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "tn.h"
 #include "glob.h"
 %}
 
 %%
-
-"const"                     { return TCONST; }
-"else"                      { return TELSE; }
-"if"                        { return TIF; }
-"int"                       { return TINT; }
-"return"                    { return TRETURN; }
-"void"                      { return TVOID; }
-"while"                     { return TWHILE; }
-"=="                        { return TEQUAL; }
-"!="                        { return TNOTEQU; }
-"<="                        { return TLESS; }
-">="                        { return TGREAT; }
-"&&"                        { return TAND; }
-"||"                        { return TOR; }
-"+"                         { return TPLUS; }
-"-"                         { return TMINUS; }
-"*"                         { return TSTAR; }
-"/"                         { return TSLASH; }
-"%"                         { return TMOD; }
-"++"                        { return TINC; }
-"--"                        { return TDEC; }
-"+="                        { return TADDASSIGN; }
-"-="                        { return TSUBASSIGN; }
-"*="                        { return TMULASSIGN; }
-"/="                        { return TDIVASSIGN; }
-"%="                        { return TMODASSIGN; }
-[A-Za-z_][A-Za-z0-9_]*      { return TIDENT; }
-[1-9][0-9]*|0([0-7]+|(x|X)[0-9A-Fa-f]*)? { return TNUMBER; }
-"\/\*[^*]*\*+([^/*][^*]*\*+)*\/"       
-"\/\/.*"                    ;
-[ \t]+                      ;
-"\n"                        { return LINEPROCESS; }
+"const"                     return(TCONST);
+"else"                      return(TELSE);
+"if"                        return(TIF);
+"int"                       return(TINT);
+"float"                     return(TFLOAT);
+"return"                    return(TRETURN);
+"void"                      return(TVOID);
+"while"                     return(TWHILE);
+"=="                        return(TEQUAL);
+"!="                        return(TNOTEQU);
+"<="                        return(TLESS);
+">="                        return(TGREAT);
+"&&"                        return(TAND);
+"||"                        return(TOR);
+"+"                         return(TPLUS);
+"-"                         return(TMINUS);
+"*"                         return(TSTAR);
+"/"                         return(TMOD);
+"++"                        return(TINC);
+"--"                        return(TDEC);
+"+="                        return(TADDASSIGN);
+"-="                        return(TSUBASSIGN);
+"*="                        return(TMULASSIGN);
+"/="                        return(TDIVASSIGN);
+"%="                        return(TMODASSIGN);
+[A-Za-z_][A-Za-z0-9_]*      return(TIDENT); 
+[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return TNUMBER;   // 소수점을 포함한 실수 형식 숫자
+[0-9]+([eE][-+]?[0-9]+)              return TNUMBER;   // 지수 표기법 숫자
+[0-9]+                               return TNUMBER;   // 정수 형식 숫자
+"("                                  return TPAREN;     // 괄호 '('를 TPAREN 토큰으로 반환
+")"                                  return TPAREN;     // 괄호 ')'를 TPAREN 토큰으로 반환
+"{"                                  return TLBRACE;    // 중괄호 '{'를 TLBRACE 토큰으로 반환
+"}"                                  return TRBRACE;    // 중괄호 '}'를 TRBRACE 토큰으로 반환
+"/*"([^*]|\*[^*/])*\**"*/"  ;
+"//".*                      ;
+[ \t]                       ;
+"\n"                        return(LINEPROCESS);
 [0-9]+[A-Za-z0-9_]*         { return TERROR1; }     /* 숫자로 시작하는 경우 */
 [A-Za-z0-9_]*[^A-Za-z0-9_ \t\n]+[A-Za-z0-9_]*  { return TERROR2; }  /* 허용되지 않은 문자 포함하는 경우 */
 

@@ -53,70 +53,50 @@ void addHT(int id_index, int hscode) {
     }
 }
 
+
 void Symtable(int line_num, char* yytext, char* type) {
-    // 저장해야 할 Identifier가 yytext 형태로 저장되어 들어옴.
-    // 숫자시작, illegal ident 에러 들어오는 경우 없음.
-    // 15자 이상 처리, 오버플로우 처리만 하면 됨
-    // '마지막 문자열 출력' 따로 뺄 필요가 없는건가?
+    int length = strlen(yytext);
 
-    int length = strlen(yytext);            //입력이 number인 경우 에러뜸 (15자 이상인 걸로 뜬다 ..)
-
-    //오버플로우 처리. 넘어가면 return해서 끝나도록
-    //한 글자씩 넣는 게 아니고 yytext 단어를 한꺼번에 넣는 것. 한번에 들어오는 길이로 비교
-    if (index_next + length > sizeof(str_pool)) {     //-1 안해도 되겠지..?
-
-        printf("String Pool Overflow\n");
-        printST();
-        printHT();
-        flag = 1;
-
-        return 1;
-    }
-
-    //15자 이상 들어오면 처리
+    // Identifier의 길이가 15자를 초과하면 오류 처리
     if (length > 15) {
-        printf("Error - Exceed\n");
-        index_next = index_start;
-        flag = 1;
-
-        return 1;
+        printf("Error - Identifier length exceeds 15 characters.\n");
+        return; // 오류 처리 후 함수 종료
     }
 
-    //15자 이상도 아니고 오버플로우도 안 나면 버퍼에 단어 저장.
-    //한 단어를 한 번에 저장해야 함
+    // 식별자를 버퍼에 저장하기 전에 오버플로우 검사
+    if (index_next + length + 1 > sizeof(str_pool)) {
+        printf("Error - String Pool Overflow\n");
+        return; // 오버플로우 처리 후 함수 종료
+    }
 
-    strcpy(str_pool + index_start, yytext); // yytext를 str_pool에 저장
-    index_next += length;
-    str_pool[index_next++] = '\0';      //단어 뒤에 띄어쓰기 저장하고 index_next 위치 미리 옮겨둠
-                                        // 단/어/저/장/됨/\0/[현재 index_next]/ 
+    // 버퍼에 식별자를 저장
+    strcpy(str_pool + index_next, yytext);
+    int id_index = index_next;
+    index_next += length + 1; // 식별자 길이 + 널 문자('\0') 고려
 
-    //hash 값 계산
-    hash_value = divisionMethod(str_pool + index_start, HASH_TABLE_SIZE);
+    // 해시값 계산
+    int hash_value = divisionMethod(yytext, HASH_TABLE_SIZE);
 
-    //hash table에 똑같은 단어가 저장된 선례 있나 확인  (해시값으로 찾아들어가서 strcmp로 찾아낸다)
-    //있으면 찾은 항목을 HTPointer로 반환 -> 겹치므로 저장하면 안 됨
-    //없으면 NULL 포인터 반환함
-    HTpointer htp = lookupHT(index_start, hash_value);
+    // 해시 테이블에서 식별자 검색
+    HTpointer entry = lookupHT(id_index, hash_value);
 
-    //똑같은 단어 없었던 경우
-    if (htp == NULL) {
+    if (entry == NULL) {
+        // 신규 식별자인 경우
+        addHT(id_index, hash_value);
 
-        //symtable에 1)str_pool 어디서 단어 시작하는지 2)단어 길이 저장함
+        // 심볼 테이블에 식별자 정보 저장
         sym_table[sym_table_index][0] = line_num;
         sym_table[sym_table_index][1] = type;
-        sym_table[sym_table_index][2] = index_start; //수정. 여기다 넣을 필요 없음?
-        sym_table[sym_table_index++][3] = length;
+        sym_table[sym_table_index][2] = id_index; // str_pool 내 식별자 시작 인덱스
+        sym_table[sym_table_index][3] = length;
+        sym_table_index++;
 
-        //hash table에 1)str_pool 어디서 단어 시작하는지 2)해시값 저장함
-        addHT(index_start, hash_value);
-        //printf("%d\t%s\n", hash_value, yytext); // 버퍼의 내용을 화면에 출력
-        index_start = index_next; // 버퍼 인덱스 초기화
     }
-    else { //똑같은 단어 이미 있음
-        printf("%d\t%s (already exists)\n", hash_value, str_pool + index_start);
-        index_next = index_start; // 버퍼에 단어 저장했던 거 초기화함 (다시 덮어쓸것!)
+    /*
+    else {
+        // 이미 존재하는 식별자인 경우
+        printf("Error - Identifier '%s' already exists.\n", yytext);
         flag = 1;
     }
-
-    return 1;
+    */
 }
