@@ -5,13 +5,11 @@
 
 char separators[] = " ,;\t\n\r\n";
 
-#define isLetter(x) ( ((x) >= 'a' && (x) <='z') || ((x) >= 'A' && (x) <= 'Z') || ((x) == '_')) 
-#define isDigit(x) ( (x) >= '0' && (x) <= '9' )
-
 int index_start = 0;
 int index_next = 0;
 int hash_value = 0;
 int sym_table_index = 0;
+int flag = 0;
 
 int divisionMethod(char* key, int tableSize) {
     unsigned int hash_key = 0;
@@ -57,10 +55,7 @@ void addHT(int id_index, int hscode) {
     }
 }
 
-//symtable 함수
-//여기서 computeHS, lookupHT, addHT 사용해서 심벌테이블에 전달받은 IDENT를 저장
 void Symtable(int line_num, char* yytext, char* type) {
-
     // 저장해야 할 Identifier가 yytext 형태로 저장되어 들어옴.
     // 숫자시작, illegal ident 에러 들어오는 경우 없음.
     // 15자 이상 처리, 오버플로우 처리만 하면 됨
@@ -75,6 +70,7 @@ void Symtable(int line_num, char* yytext, char* type) {
         printf("String Pool Overflow\n");
         printST();
         printHT();
+        flag = 1;
 
         return 1;
     }
@@ -83,10 +79,10 @@ void Symtable(int line_num, char* yytext, char* type) {
     if (length > 15) {
         printf("Error - Exceed\n");
         index_next = index_start;
+        flag = 1;
 
         return 1;
     }
-
 
     //15자 이상도 아니고 오버플로우도 안 나면 버퍼에 단어 저장.
     //한 단어를 한 번에 저장해야 함
@@ -121,8 +117,8 @@ void Symtable(int line_num, char* yytext, char* type) {
     else { //똑같은 단어 이미 있음
         printf("%d\t%s (already exists)\n", hash_value, str_pool + index_start);
         index_next = index_start; // 버퍼에 단어 저장했던 거 초기화함 (다시 덮어쓸것!)
+        flag = 1;
     }
-
 
     return 1;
 }
