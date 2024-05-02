@@ -54,12 +54,12 @@ scanner.l
 "}"                                 return(TRBRACE);    // 중괄호 '}'를 TRBRACE 토큰으로 반환
 "/*"([^*]|\*[^*/])*\**"*/"          ;
 "//".*                              ;
-[ \t]                                ;
+[ \t]                               ;
 "\n"                                return(LINEPROCESS);
 [0-9]+[A-Za-z0-9_]*                 return(TERROR1);
-[A-Za-z_][A-Za-z0-9_]*[`~@#$^<>]+[A-Za-z0-9_]*          return TERROR2; //두번째글자 이상에서 illegal있는 경우
-[`~@#$^<>]+[A-Za-z0-9_]*                                return TERROR3; //identifier 맨 앞에 illegal이 오는 경우
-.                                                       return TERROR4;
+[A-Za-z_][A-Za-z0-9_]*[`~@#$^<>"]+[A-Za-z0-9_]*          return TERROR2; //두번째글자 이상에서 illegal있는 경우
+[`~@#$^<>]+[A-Za-z0-9_]*[`~@#$^<>"]*                     return TERROR3; //identifier 맨 앞에 illegal이 오는 경우
+.                                                        return TERROR4;
 %%
 
 int yywrap()
