@@ -25,13 +25,12 @@ void printST() {
 
 void printtoken(int line_num, char* token_type, char* token_name, int sym_index_num) {
 
-    if (sym_index_num == -1)    //¿¹¾à¾îÀÎ °æ¿ì
+    if (sym_index_num == -1)    //ì˜ˆì•½ì–´ì¸ ê²½ìš°
         printf("%d\t\t%s\t\t%s\n", line_num, token_type, token_name);
-    else                        //½Äº°ÀÚÀÎ °æ¿ì
-        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_index_num);
+    else                        //ì‹ë³„ìì¸ ê²½ìš°
+        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_table[sym_index_num][0]);
 }
 
-/*
 void printHT() {
     printf("\nHash Table:\n");
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
@@ -46,7 +45,6 @@ void printHT() {
         }
     }
 }
-*/
 
 int main()
 {
@@ -62,7 +60,7 @@ int main()
     while ((tn = yylex()) != TEOF) {
         switch (tn) {
         case LINEPROCESS: line_num++; break;
-        case TCONST: printtoken(line_num, "TCONST", yytext, -1); break;                  //main.c °¬´Ù°¡ symtable.c °¬´Ù°¡ °¡´É.
+        case TCONST: printtoken(line_num, "TCONST", yytext, -1); break;                  //main.c ê°”ë‹¤ê°€ symtable.c ê°”ë‹¤ê°€ ê°€ëŠ¥.
         case TELSE: printtoken(line_num, "TELSE", yytext, -1); break;
         case TIF: printtoken(line_num, "TIF", yytext, -1); break;
         case TINT: printtoken(line_num, "TINT", yytext, -1); break;
@@ -96,23 +94,24 @@ int main()
         case TCOMMA: printtoken(line_num, "TCOMMA", yytext, -1); break;
         case TMAIN: printtoken(line_num, "TMAIN", yytext, -1); break;
         case TPRINT: printtoken(line_num, "TPRINT", yytext, -1); break;
-        case TIDENT: {                                                                //½Äº°ÀÚÀÎ °æ¿ì¸¸ sym_table¿¡ ÀúÀå. ½Äº°ÀÚ ÀúÀå ÈÄ, ±×°Å¶û º°°³·Î ¸Å ÁÙ¸¶´Ù Ãâ·ÂÇÏ´Â printtoken ÇØÁÜ
+        case TSTRING: printtoken(line_num, "TSTRING", yytext, -1); break;
+        case TIDENT: {                                                                //ì‹ë³„ìì¸ ê²½ìš°ë§Œ sym_tableì— ì €ì¥. ì‹ë³„ì ì €ì¥ í›„, ê·¸ê±°ë‘ ë³„ê°œë¡œ ë§¤ ì¤„ë§ˆë‹¤ ì¶œë ¥í•˜ëŠ” printtoken í•´ì¤Œ
             Symtable(line_num, yytext, "TIDENT");
             if (flag != 1)
             {
-                printtoken(line_num, "TIDENT", yytext, sym_table_index - 1);  break;   //already exist°Å³ª 15ÀÚ ÃÊ°ú¸é Ãâ·ÂÇÏ¸é ¾ÈµÇ´Ï±î..
+                printtoken(line_num, "TIDENT", yytext, sym_table_index - 1);  break;   //already existê±°ë‚˜ 15ì ì´ˆê³¼ë©´ ì¶œë ¥í•˜ë©´ ì•ˆë˜ë‹ˆê¹Œ..
             }
             else { flag = 0; break; }
         }
         case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break;
-        case TERROR1: reporterror1(line_num, yytext); break;         //illegal ¹®ÀÚ ¿¡·¯ Ã³¸®
-        case TERROR2: reporterror2(line_num, yytext);  break;              // ¼ıÀÚ·Î ½ÃÀÛÇÏ´Â ¿¡·¯ Ã³¸®
+        case TERROR1: reporterror1(line_num, yytext); break;         // ìˆ«ìë¡œ ì‹œì‘í•˜ëŠ” ì—ëŸ¬ ì²˜ë¦¬
+        case TERROR2: reporterror2(line_num, yytext);  break;        //illegal ë¬¸ì ì—ëŸ¬ ì²˜ë¦¬   
         case TERROR3: reporterror3(line_num, yytext);  break;
-        case TERROR4: reporterror4(line_num, yytext);  break;
+       
         }
     }
 
     printST();
-    //printHT();
+    printHT();
     return 0;
 }
