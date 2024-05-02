@@ -28,10 +28,9 @@ void printtoken(int line_num, char* token_type, char* token_name, int sym_index_
     if (sym_index_num == -1)    //예약어인 경우
         printf("%d\t\t%s\t\t%s\n", line_num, token_type, token_name);
     else                        //식별자인 경우
-        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_index_num);
+        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_table[sym_index_num][0]);
 }
 
-/*
 void printHT() {
     printf("\nHash Table:\n");
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
@@ -46,7 +45,6 @@ void printHT() {
         }
     }
 }
-*/
 
 int main()
 {
@@ -66,6 +64,7 @@ int main()
         case TELSE: printtoken(line_num, "TELSE", yytext, -1); break;
         case TIF: printtoken(line_num, "TIF", yytext, -1); break;
         case TINT: printtoken(line_num, "TINT", yytext, -1); break;
+        case TFLOAT: printtoken(line_num, "TFLOAT", yytext, -1); break;
         case TRETURN: printtoken(line_num, "TRETURN", yytext, -1); break;
         case TVOID: printtoken(line_num, "TVOID", yytext, -1); break;
         case TWHILE: printtoken(line_num, "TWHILE", yytext, -1); break;
@@ -95,6 +94,7 @@ int main()
         case TCOMMA: printtoken(line_num, "TCOMMA", yytext, -1); break;
         case TMAIN: printtoken(line_num, "TMAIN", yytext, -1); break;
         case TPRINT: printtoken(line_num, "TPRINT", yytext, -1); break;
+        case TSTRING: printtoken(line_num, "TSTRING", yytext, -1); break;
         case TIDENT: {                                                                //식별자인 경우만 sym_table에 저장. 식별자 저장 후, 그거랑 별개로 매 줄마다 출력하는 printtoken 해줌
             Symtable(line_num, yytext, "TIDENT");
             if (flag != 1)
@@ -104,12 +104,14 @@ int main()
             else { flag = 0; break; }
         }
         case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break;
-        case TERROR1: reporterror1(line_num, yytext); break;         //illegal 문자 에러 처리
-        case TERROR2: reporterror2(line_num, yytext);  break;              // 숫자로 시작하는 에러 처리
+        case TERROR1: reporterror1(line_num, yytext); break;         // 숫자로 시작하는 에러 처리
+        case TERROR2: reporterror2(line_num, yytext);  break;        //illegal 문자 에러 처리   
+        case TERROR3: reporterror3(line_num, yytext);  break;
+        case TERROR4: reporterror4(line_num, yytext); break;
         }
     }
 
     printST();
-    //printHT();
+    printHT();
     return 0;
 }

@@ -21,6 +21,7 @@ scanner.l
 "while"                     return(TWHILE);
 "main"                      return(TMAIN);
 "print"                     return(TPRINT);
+"printf"                    return(TPRINT);
 ";"                         return(TSEMICOLON);
 ","                         return(TCOMMA);
 "="                         return(TEQUAL);
@@ -41,21 +42,24 @@ scanner.l
 "*="                        return(TMULASSIGN);
 "/="                        return(TDIVASSIGN);
 "%="                        return(TMODASSIGN);
-[A-Za-z_][A-Za-z0-9_]*      return(TIDENT); 
-[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return TNUMBER;   // 소수점을 포함한 실수 형식 숫자
-[0-9]+([eE][-+]?[0-9]+)              return TNUMBER;   // 지수 표기법 숫자
-[0-9]+                               return TNUMBER;   // 정수 형식 숫자
-"("                                  return TPAREN;     // 괄호 '('를 TPAREN 토큰으로 반환
-")"                                  return TPAREN;     // 괄호 ')'를 TPAREN 토큰으로 반환
-"{"                                  return TLBRACE;    // 중괄호 '{'를 TLBRACE 토큰으로 반환
-"}"                                  return TRBRACE;    // 중괄호 '}'를 TRBRACE 토큰으로 반환
-"/*"([^*]|\*[^*/])*\**"*/"  ;
-"//".*                      ;
-[ \t]                       ;
-"\n"                        return(LINEPROCESS);
-[0-9]+[A-Za-z0-9_]*         return TERROR1;
-.  { return TERROR2; }  /* 허용되지 않은 문자 포함하는 경우 */
 
+[A-Za-z_][A-Za-z0-9_]*              return(TIDENT); 
+[0-9]*                              return(TNUMBER);
+[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return(TNUMBER);    // 소수점을 포함한 실수 형식 숫자
+[0-9]+\.[0-9]+[fF]+                 return(TNUMBER);    // "f"를 포함한 고정소수점 형식 숫자 인식
+[0-9]+([eE][-+]?[0-9]+)             return(TNUMBER);    // 지수 표기법 숫자
+"("                                 return(TPAREN);     // 괄호 '('를 TPAREN 토큰으로 반환
+")"                                 return(TPAREN);     // 괄호 ')'를 TPAREN 토큰으로 반환
+"{"                                 return(TLBRACE);    // 중괄호 '{'를 TLBRACE 토큰으로 반환
+"}"                                 return(TRBRACE);    // 중괄호 '}'를 TRBRACE 토큰으로 반환
+"/*"([^*]|\*[^*/])*\**"*/"          ;
+"//".*                              ;
+[ \t]                                ;
+"\n"                                return(LINEPROCESS);
+[0-9]+[A-Za-z0-9_]*                 return(TERROR1);
+[A-Za-z_][A-Za-z0-9_]*[`~@#$^<>]+[A-Za-z0-9_]*          return TERROR2; //두번째글자 이상에서 illegal있는 경우
+[`~@#$^<>]+[A-Za-z0-9_]*                                return TERROR3; //identifier 맨 앞에 illegal이 오는 경우
+.                                                       return TERROR4;
 %%
 
 int yywrap()

@@ -78,7 +78,7 @@ void Symtable(int line_num, char* yytext, char* type) {
     str_pool[index_next++] = '\0';
 
     // 해시값 계산
-    int hash_value = divisionMethod(str_pool+index_start, HASH_TABLE_SIZE);
+    int hash_value = divisionMethod(str_pool + index_start, HASH_TABLE_SIZE);
 
     // 해시 테이블에서 식별자 검색
     HTpointer htp = lookupHT(index_start, hash_value);
@@ -94,12 +94,11 @@ void Symtable(int line_num, char* yytext, char* type) {
         index_start = index_next; // 버퍼 인덱스 초기화
 
     }
-    return;
-    /*
     else {
         // 이미 존재하는 식별자인 경우
-        printf("Error - Identifier '%s' already exists.\n", yytext);
+        //printf("Error - Identifier '%s' already exists.\n", yytext);
         flag = 1;
     }
-    */
+    return;
+
 }

@@ -10,14 +10,22 @@
 		ex) l@ve
 */
 
-char separators[] = " ,;\t\n\r\n";
-
 void reporterror1(int line_num, char* yytext) {
 
 	printf("Error at line %d: start with digit.\n", line_num, yytext);
 }
 
 void reporterror2(int line_num, char* yytext) {
+
+	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
+}
+
+void reporterror3(int line_num, char* yytext) {
+
+	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
+}
+
+void reporterror4(int line_num, char* yytext) {
 
 	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
 }

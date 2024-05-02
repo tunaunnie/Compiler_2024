@@ -1,19 +1,13 @@
-int sum_int(int a, int b);
-
-float sum_float(float a, float b);
-
-int main(void) {
-
-   int first = 24;
-
-   int second = 8;
-
-   int result = sum(first, second);
-
-   print(sum_float(1.234e+2, 0.2);
-
-   return 0;
-
-}
 int 123identifier = 10;
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+float x = 0.2f;
+1.23e10
+0.0005
+123.4567
+var x = 10;  // 'var' 키워드는 miniC에 정의되어 있지 않음
+x ** 2;  // '**' 연산자는 miniC에 정의되어 있지 않음
+struct Point {
+    int x;
+    int y;
+};
+
+Point p;
