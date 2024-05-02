@@ -1,2 +1,17 @@
-first
-first
+int sum_int(int a, int b);
+
+float sum_float(float a, float b);
+
+int main(void) {
+
+   int first = 24;
+
+   int second = 8;
+
+   int result = sum(first, second);
+
+   print(sum_float(1.234e+2, 0.2);
+
+   return 0;
+
+}

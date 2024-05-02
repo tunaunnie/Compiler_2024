@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\x64\\Debug\\lex.yy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|solutionrelative:x64\\Debug\\lex.yy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\symtable.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|solutionrelative:symtable.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\x64\\Debug\\glob.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:x64\\Debug\\glob.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\x64\\Debug\\glob.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9662F953-49FD-404C-879A-3013730B4737}|Assignment2_Compiler\\Assignment2_Compiler.vcxproj|solutionrelative:x64\\Debug\\glob.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,31 +46,30 @@
               "RelativeToolTip": "x64\\Debug\\glob.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-02T03:34:53.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T03:34:53.082Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "lex.yy.c",
               "DocumentMoniker": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\x64\\Debug\\lex.yy.c",
               "RelativeDocumentMoniker": "x64\\Debug\\lex.yy.c",
               "ToolTip": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\x64\\Debug\\lex.yy.c",
               "RelativeToolTip": "x64\\Debug\\lex.yy.c",
-              "ViewState": "AQIAAO4FAAAAAAAAAAAWwPsFAAAoAAAA",
+              "ViewState": "AQIAAO4FAAAAAAAAAAAWwPYFAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-05-02T03:34:13.163Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "main.c",
               "DocumentMoniker": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\main.c",
               "RelativeDocumentMoniker": "main.c",
               "ToolTip": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\main.c",
               "RelativeToolTip": "main.c",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAAAGsAAAAYAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA0AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-05-02T03:30:52.618Z",
               "EditorCaption": ""
@@ -83,7 +82,7 @@
               "RelativeDocumentMoniker": "symtable.c",
               "ToolTip": "C:\\Users\\ygw02\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Assignment2\\Assignment2_Compiler\\symtable.c",
               "RelativeToolTip": "symtable.c",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAAGIAAAAKAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAEoAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-05-02T03:29:56.152Z",
               "EditorCaption": ""

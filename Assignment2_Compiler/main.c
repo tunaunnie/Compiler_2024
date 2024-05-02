@@ -28,7 +28,7 @@ void printtoken(int line_num, char* token_type, char* token_name, int sym_index_
     if (sym_index_num == -1)    //예약어인 경우
         printf("%d\t\t%s\t\t%s\n", line_num, token_type, token_name);
     else                        //식별자인 경우
-        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_index_num);
+        printf("%d\t\t%s\t\t%s\t\t%d\n", line_num, token_type, token_name, sym_table[sym_index_num][0]);
 }
 
 /*
