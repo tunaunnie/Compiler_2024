@@ -22,32 +22,32 @@ int divisionMethod(char* key, int tableSize) {
 HTpointer lookupHT(int id_index, int hscode) {
     HTpointer entry = HT[hscode];
 
-    // Ã¼ÀÌ´×µÈ ¸®½ºÆ®¸¦ Å½»ö
+    // ì²´ì´ë‹ëœ ë¦¬ìŠ¤íŠ¸ë¥¼ íƒìƒ‰
     while (entry != NULL) {
         if (strcmp(str_pool + (entry->index), str_pool + (id_index)) == 0) {
-            return entry; // Ã£Àº Ç×¸ñ ¹İÈ¯
+            return entry; // ì°¾ì€ í•­ëª© ë°˜í™˜
         }
         entry = entry->next;
     }
-    return NULL; // Ç×¸ñÀ» Ã£Áö ¸øÇÑ °æ¿ì
+    return NULL; // í•­ëª©ì„ ì°¾ì§€ ëª»í•œ ê²½ìš°
 }
 
 void addHT(int id_index, int hscode) {
-    // »õ Ç×¸ñ »ı¼º ¹× ÃÊ±âÈ­
+    // ìƒˆ í•­ëª© ìƒì„± ë° ì´ˆê¸°í™”
     HTpointer newEntry = (HTpointer)malloc(sizeof(HTentry));
     if (newEntry == NULL) {
-        printf("¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
+        printf("ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
         exit(1);
     }
     newEntry->index = id_index;
     newEntry->next = NULL;
 
     if (HT[hscode] == NULL) {
-        // Ã¹ ¹øÂ° Ç×¸ñÀ¸·Î Ãß°¡
+        // ì²« ë²ˆì§¸ í•­ëª©ìœ¼ë¡œ ì¶”ê°€
         HT[hscode] = newEntry;
     }
     else {
-        // ÀÌ¹Ì Ç×¸ñÀÌ ÀÖÀ¸¸é, ¸®½ºÆ®ÀÇ ¸Ç ¾Õ¿¡ Ãß°¡
+        // ì´ë¯¸ í•­ëª©ì´ ìˆìœ¼ë©´, ë¦¬ìŠ¤íŠ¸ì˜ ë§¨ ì•ì— ì¶”ê°€
         newEntry->next = HT[hscode];
         HT[hscode] = newEntry;
     }
@@ -57,49 +57,48 @@ void addHT(int id_index, int hscode) {
 void Symtable(int line_num, char* yytext, char* type) {
     int length = strlen(yytext);
 
-    // IdentifierÀÇ ±æÀÌ°¡ 15ÀÚ¸¦ ÃÊ°úÇÏ¸é ¿À·ù Ã³¸®
+    // Identifierì˜ ê¸¸ì´ê°€ 15ìë¥¼ ì´ˆê³¼í•˜ë©´ ì˜¤ë¥˜ ì²˜ë¦¬
     if (length > 15) {
         printf("Error - Identifier length exceeds 15 characters.\n");
         index_next = index_start;
         flag = 1;
-        return; // ¿À·ù Ã³¸® ÈÄ ÇÔ¼ö Á¾·á
+        return; // ì˜¤ë¥˜ ì²˜ë¦¬ í›„ í•¨ìˆ˜ ì¢…ë£Œ
     }
 
-    // ½Äº°ÀÚ¸¦ ¹öÆÛ¿¡ ÀúÀåÇÏ±â Àü¿¡ ¿À¹öÇÃ·Î¿ì °Ë»ç
+    // ì‹ë³„ìë¥¼ ë²„í¼ì— ì €ì¥í•˜ê¸° ì „ì— ì˜¤ë²„í”Œë¡œìš° ê²€ì‚¬
     if (index_next + length + 1 > sizeof(str_pool)) {
         printf("Error - String Pool Overflow\n");
         flag = 1;
-        return; // ¿À¹öÇÃ·Î¿ì Ã³¸® ÈÄ ÇÔ¼ö Á¾·á
+        return; // ì˜¤ë²„í”Œë¡œìš° ì²˜ë¦¬ í›„ í•¨ìˆ˜ ì¢…ë£Œ
     }
 
-    // ¹öÆÛ¿¡ ½Äº°ÀÚ¸¦ ÀúÀå
-    strcpy(str_pool + index_start, yytext); // yytext¸¦ str_pool¿¡ ÀúÀå
+    // ë²„í¼ì— ì‹ë³„ìë¥¼ ì €ì¥
+    strcpy(str_pool + index_start, yytext); // yytextë¥¼ str_poolì— ì €ì¥
     index_next += length;
     str_pool[index_next++] = '\0';
 
-    // ÇØ½Ã°ª °è»ê
+    // í•´ì‹œê°’ ê³„ì‚°
     int hash_value = divisionMethod(str_pool + index_start, HASH_TABLE_SIZE);
 
-    // ÇØ½Ã Å×ÀÌºí¿¡¼­ ½Äº°ÀÚ °Ë»ö
+    // í•´ì‹œ í…Œì´ë¸”ì—ì„œ ì‹ë³„ì ê²€ìƒ‰
     HTpointer htp = lookupHT(index_start, hash_value);
 
     if (htp == NULL) {
-        // ½Å±Ô ½Äº°ÀÚÀÎ °æ¿ì
+        // ì‹ ê·œ ì‹ë³„ìì¸ ê²½ìš°
 
-        // ½Éº¼ Å×ÀÌºí¿¡ ½Äº°ÀÚ Á¤º¸ ÀúÀå
+        // ì‹¬ë³¼ í…Œì´ë¸”ì— ì‹ë³„ì ì •ë³´ ì €ì¥
         sym_table[sym_table_index][0] = index_start;
         sym_table[sym_table_index++][1] = length;
 
         addHT(index_start, hash_value);
-        index_start = index_next; // ¹öÆÛ ÀÎµ¦½º ÃÊ±âÈ­
+        index_start = index_next; // ë²„í¼ ì¸ë±ìŠ¤ ì´ˆê¸°í™”
 
     }
-    return;
-    /*
     else {
-        // ÀÌ¹Ì Á¸ÀçÇÏ´Â ½Äº°ÀÚÀÎ °æ¿ì
-        printf("Error - Identifier '%s' already exists.\n", yytext);
+        // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì‹ë³„ìì¸ ê²½ìš°
+        //printf("Error - Identifier '%s' already exists.\n", yytext);
         flag = 1;
     }
-    */
+    return;
+
 }
