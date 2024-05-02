@@ -4,9 +4,9 @@
 #include "glob.h"
 
 /*
-	1. ¼ıÀÚ·Î ½ÃÀÛÇÏ´Â °æ¿ì
+	1. ìˆ«ìë¡œ ì‹œì‘í•˜ëŠ” ê²½ìš°
 			ex) 123id
-	2. Çã¿ëÇÏÁö ¾Ê´Â ¹®ÀÚ¸¦ Æ÷ÇÔÇÏ°í ÀÖ´Â °æ¿ì
+	2. í—ˆìš©í•˜ì§€ ì•ŠëŠ” ë¬¸ìë¥¼ í¬í•¨í•˜ê³  ìˆëŠ” ê²½ìš°
 		ex) l@ve
 */
 
@@ -19,13 +19,9 @@ void reporterror1(int line_num, char* yytext) {
 
 void reporterror2(int line_num, char* yytext) {
 
-	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
+	printf("Error at line %d: %s is not a valid.TERROR2\n", line_num, yytext);
 }
 void reporterror3(int line_num, char* yytext) {
 
-	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
-}
-void reporterror4(int line_num, char* yytext) {
-
-	printf("Error at line %d: %s is not a valid.\n", line_num, yytext);
+	printf("Error at line %d: %s is not a valid.TERROR3\n", line_num, yytext);
 }
