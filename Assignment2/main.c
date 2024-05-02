@@ -65,6 +65,7 @@ int main()
         case TIF: printtoken(line_num, "TIF", yytext, -1); break;
         case TINT: printtoken(line_num, "TINT", yytext, -1); break;
         case TFLOAT: printtoken(line_num, "TFLOAT", yytext, -1); break;
+        case TCHAR: printtoken(line_num, "TCHAR", yytext, -1); break;
         case TRETURN: printtoken(line_num, "TRETURN", yytext, -1); break;
         case TVOID: printtoken(line_num, "TVOID", yytext, -1); break;
         case TWHILE: printtoken(line_num, "TWHILE", yytext, -1); break;
@@ -105,8 +106,8 @@ int main()
         }
         case TNUMBER: printtoken(line_num, "TNUMBER", yytext, -1); break;
         case TERROR1: reporterror1(line_num, yytext); break;         // 숫자로 시작하는 에러 처리
-        case TERROR2: reporterror2(line_num, yytext);  break;        //illegal 문자 에러 처리   
-        case TERROR3: reporterror3(line_num, yytext);  break;
+        case TERROR2: reporterror2(line_num, yytext); break;        //illegal 문자 에러 처리   
+        case TERROR3: reporterror3(line_num, yytext); break;
         case TERROR4: reporterror4(line_num, yytext); break;
         }
     }
