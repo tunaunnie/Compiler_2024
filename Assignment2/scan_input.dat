@@ -1,19 +1,2 @@
-int 123identifier = 10;
-float x = 0.2f;
-1.23e10
-0.0005
-123.4567
-var x = 10;  // 'var' 키워드는 miniC에 정의되어 있지 않음
-x ** 2;  // '**' 연산자는 miniC에 정의되어 있지 않음
-struct Point {
-    int x;
-    int y;
-};
-
-Point p;
-!
-l@ve
-##
-#push
-push#
-#push#
+x
+applegbarn aaaaaaaaaaaaaaaaaaaaaaaa

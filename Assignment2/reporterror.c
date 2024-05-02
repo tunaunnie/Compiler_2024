@@ -17,15 +17,10 @@ void reporterror1(int line_num, char* yytext) {
 
 void reporterror2(int line_num, char* yytext) {
 
-	printf("Error at line %d: %s is not valid.\n", line_num, yytext);
+	printf("Error2 at line %d: %s is not valid.\n", line_num, yytext);
 }
 
 void reporterror3(int line_num, char* yytext) {
 
-	printf("Error at line %d: %s is not valid.\n", line_num, yytext);
-}
-
-void reporterror4(int line_num, char* yytext) {
-
-	printf("Error at line %d: %s is not valid.\n", line_num, yytext);
+	printf("Error3 at line %d: %s is not valid.\n", line_num, yytext);
 }

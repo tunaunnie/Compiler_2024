@@ -6,7 +6,7 @@ extern yylex();
 extern char* yytext;
 
 int sym_table[SYM_TABLE_SIZE][2];
-char str_pool[200];
+char str_pool[10];
 
 typedef struct HTentry* HTpointer;
 typedef struct HTentry {
@@ -18,4 +18,3 @@ HTpointer HT[HASH_TABLE_SIZE];
 
 extern int sym_table_index;
 extern int flag;
-extern int error_flag;

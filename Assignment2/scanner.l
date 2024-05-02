@@ -26,7 +26,7 @@ scanner.l
 "printf"                    return(TPRINT);
 ";"                         return(TSEMICOLON);
 ","                         return(TCOMMA);
-"="                         return(TEQUAL);
+"="                         return(TASSIGN);
 "=="                        return(TEQUAL);
 "!="                        return(TNOTEQU);
 "<="                        return(TLESS);
@@ -59,8 +59,8 @@ scanner.l
 [ \t]                               ;
 "\n"                                return(LINEPROCESS);
 [0-9]+[A-Za-z0-9_]*                 return(TERROR1);
-[`~@#$^<>]*[A-Za-z0-9_]*[`~@#$^<>]+[A-Za-z0-9_]*          return TERROR2;
-.                                                        return TERROR4;
+[`~@#$^<>]*[A-Za-z0-9_]*[`~@#$^<>!]+[A-Za-z0-9_]*         return TERROR2;
+.                                                        return TERROR3;
 %%
 
 int yywrap()

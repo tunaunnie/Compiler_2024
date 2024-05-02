@@ -67,8 +67,8 @@ void Symtable(int line_num, char* yytext, char* type) {
 
     // 식별자를 버퍼에 저장하기 전에 오버플로우 검사
     if (index_next + length + 1 > sizeof(str_pool)) {
-        printf("Error - String Pool Overflow\n");
-        flag = 1;
+        printf("Error - String Pool Overflow (token below this is not stored in symtable)\n");
+        flag = 2;
         return; // 오버플로우 처리 후 함수 종료
     }
 
@@ -96,7 +96,6 @@ void Symtable(int line_num, char* yytext, char* type) {
     }
     else {
         // 이미 존재하는 식별자인 경우
-        //printf("Error - Identifier '%s' already exists.\n", yytext);
         flag = 1;
     }
     return;
