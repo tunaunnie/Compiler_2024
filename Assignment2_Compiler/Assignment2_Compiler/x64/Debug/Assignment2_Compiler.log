@@ -1,0 +1,22 @@
+﻿  main.c
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(10,25): warning C4047: '=': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(59,12): warning C4129: '[': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(100,13): warning C4013: 'Symtable'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(111,23): warning C4013: 'reporterror1'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(112,23): warning C4013: 'reporterror2'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(113,23): warning C4013: 'reporterror3'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\main.c(114,23): warning C4013: 'reporterror4'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  symtable.c
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\symtable.c(27,13): warning C4013: 'strcmp'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\symtable.c(58,18): warning C4013: 'strlen'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\symtable.c(76,5): warning C4013: 'strcpy'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  lex.yy.c
+C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\x64\Debug\lex.yy.c(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+/lex.yy.c(1178,3): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '../x64/Debug/lex.yy.c'을(를) 컴파일하는 중)
+  
+/lex.yy.c(1345,28): warning C4244: '초기화 중': '__int64'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '../x64/Debug/lex.yy.c'을(를) 컴파일하는 중)
+  
+  코드를 생성하고 있습니다...
+  Assignment2_Compiler.vcxproj -> C:\Users\ygw02\OneDrive\바탕 화면\Assignment2\Assignment2_Compiler\x64\Debug\Assignment2_Compiler.exe
