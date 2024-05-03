@@ -24,43 +24,60 @@ scanner.l
 "main"                      return(TMAIN);
 "print"                     return(TPRINT);
 "printf"                    return(TPRINT);
-";"                         return(TSEMICOLON);
-","                         return(TCOMMA);
-"="                         return(TASSIGN);
-"=="                        return(TEQUAL);
-"!="                        return(TNOTEQU);
-"<="                        return(TLESS);
-">="                        return(TGREAT);
-"&&"                        return(TAND);
-"||"                        return(TOR);
+
 "+"                         return(TPLUS);
 "-"                         return(TMINUS);
-"*"                         return(TSTAR);
-"/"                         return(TMOD);
-"++"                        return(TINC);
-"--"                        return(TDEC);
+"*"                         return(TMUL);
+"/"                         return(TDIV);
+"%"                         return(TMOD);
+
+"="                         return(TASSIGN);
 "+="                        return(TADDASSIGN);
 "-="                        return(TSUBASSIGN);
 "*="                        return(TMULASSIGN);
 "/="                        return(TDIVASSIGN);
 "%="                        return(TMODASSIGN);
 
-[A-Za-z_][A-Za-z0-9_]*              return(TIDENT); 
-[0-9]*                              return(TNUMBER);
-[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?    return(TNUMBER);    // 소수점을 포함한 실수 형식 숫자
-[0-9]+\.[0-9]+[fF]+                 return(TNUMBER);    // "f"를 포함한 고정소수점 형식 숫자 인식
-[0-9]+([eE][-+]?[0-9]+)             return(TNUMBER);    // 지수 표기법 숫자
-"("                                 return(TPAREN);     // 괄호 '('를 TPAREN 토큰으로 반환
-")"                                 return(TPAREN);     // 괄호 ')'를 TPAREN 토큰으로 반환
-"{"                                 return(TLBRACE);    // 중괄호 '{'를 TLBRACE 토큰으로 반환
-"}"                                 return(TRBRACE);    // 중괄호 '}'를 TRBRACE 토큰으로 반환
+"!"                         return(TNOT);
+"&&"                        return(TAND);
+"||"                        return(TOR);
+
+"=="                        return(TEQUAL);
+"!="                        return(TNOTEQU);
+"<"                         return(TLESS);
+">"                         return(TGREAT);
+"<="                        return(TLESSE);
+">="                        return(TGREATE);
+
+"++"                        return(TINC);
+"--"                        return(TDEC);
+
+"("                         return(TLPAREN);     // 괄호 '('를 TPAREN 토큰으로 반환
+")"                         return(TRPAREN);     // 괄호 ')'를 TPAREN 토큰으로 반환
+"."                         return(TDOT);
+","                         return(TCOMMA);
+"{"                         return(TLBRACE);    // 중괄호 '{'를 TLBRACE 토큰으로 반환
+"}"                         return(TRBRACE);    // 중괄호 '}'를 TRBRACE 토큰으로 반환
+"["                         return(TLBRACKET);  // 대괄호 '['를 TLBRACKET 토큰으로 반환
+"]"                         return(TRBRACKET);  // 대괄호 ']'를 TRBRACKET 토큰으로 반환
+";"                         return(TSEMICOLON);
+\"                          return(TQUOTE);
+
+
+[A-Za-z_][A-Za-z0-9_]*                      return(TIDENT); 
+[1-9][0-9]*|0([0-7]+|(X|x)[0-9A-Fa-f]+)?    return(TINTNUM);
+[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?            return(TFLOATNUM);    // 소수점을 포함한 실수 형식 숫자
+[0-9]+\.[0-9]+[fF]+                         return(TFLOATNUM);    // "f"를 포함한 고정소수점 형식 숫자 인식
+[0-9]+([eE][-+]?[0-9]+)                     return(TFLOATNUM);    // 지수 표기법 숫자
+
 "/*"([^*]|\*[^*/])*\**"*/"          ;
 "//".*                              ;
 [ \t]                               ;
 "\n"                                return(LINEPROCESS);
-[0-9]+[A-Za-z0-9_]*                 return(TERROR1);
-[`~@#$^<>]*[A-Za-z0-9_]*[`~@#$^<>!]+[A-Za-z0-9_]*         return TERROR2;
-.                                                        return TERROR3;
+
+[0-9]+[A-Za-z0-9_]*                                return(TERROR1);
+[`~@#$^]*[A-Za-z0-9_]*[`~@#$^]+[A-Za-z0-9_]*       return TERROR2;
+.                                                  return TERROR3;
 %%
 
 int yywrap()

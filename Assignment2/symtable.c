@@ -7,6 +7,7 @@ int index_start = 0;
 int index_next = 0;
 int hash_value = 0;
 int sym_table_index = 0;
+int temp_index;
 int flag = 0;
 
 int divisionMethod(char* key, int tableSize) {
@@ -17,6 +18,19 @@ int divisionMethod(char* key, int tableSize) {
         hash_key += c;
     }
     return hash_key % tableSize;
+}
+
+int lookupST(int start_index)
+{
+    for (int i = 0; i < SYM_TABLE_SIZE; i++) {
+
+        // symbol table의 각 항목을 순회하며 주어진 식별자와 일치하는지 검사
+        if (strcmp(str_pool + sym_table[i][0], str_pool + start_index) == 0)
+        {
+            return i;   //식별자 발견, 그 식별자가 ST의 몇번째 index(줄)에 저장돼 있는지
+        }
+    }
+    return NULL;
 }
 
 HTpointer lookupHT(int id_index, int hscode) {
@@ -67,7 +81,7 @@ void Symtable(int line_num, char* yytext, char* type) {
 
     // 식별자를 버퍼에 저장하기 전에 오버플로우 검사
     if (index_next + length + 1 > sizeof(str_pool)) {
-        printf("Error - String Pool Overflow (token below this is not stored in symtable)\n");
+        printf("Error - String Pool Overflow (The token just below this line is not stored in the string pool)\n");
         flag = 2;
         return; // 오버플로우 처리 후 함수 종료
     }
@@ -92,11 +106,12 @@ void Symtable(int line_num, char* yytext, char* type) {
 
         addHT(index_start, hash_value);
         index_start = index_next; // 버퍼 인덱스 초기화
-
+        flag = 0;
     }
     else {
         // 이미 존재하는 식별자인 경우
-        flag = 1;
+        temp_index = lookupST(htp->index);       //해당 start_index를 가진 식별자의 Symbol table index 찾기
+        flag = 3;
     }
     return;
 
