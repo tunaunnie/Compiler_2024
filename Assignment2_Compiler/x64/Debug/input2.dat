@@ -1,0 +1,23 @@
+int sum_int(int a, int b);
+
+float sum_float(float a, float b);
+
+int main(void) {
+
+   int first = 24;
+
+   int second = 8;
+
+   int result = sum(first, second);
+
+   print(sum_float(1.234e+2, 0.2);
+
+   return 0;
+
+}
+
+1.23e10, 0.0005, 123.4567
+1234
+0x4D2
+0x2A
+0x64
