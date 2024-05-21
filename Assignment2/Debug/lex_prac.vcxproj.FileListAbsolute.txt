@@ -1,0 +1,2 @@
+C:\Users\전재은\source\repos\lex_prac\Debug\lex_prac.exe
+C:\Users\전재은\source\repos\lex_prac\Debug\lex_prac.pdb

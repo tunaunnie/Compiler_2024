@@ -1,0 +1,16 @@
+int index_start = 0;
+int index_next = 0;
+int hash_value = 0;
+int sym_table_index = 0;
+int temp_index;
+int flag = 0;
+
+int divisionMethod(char* key, int tableSize) {
+    unsigned int hash_key = 0;
+    int c;
+
+    while (c = *key++) {
+        hash_key += c;
+    }
+    return hash_key % tableSize;
+}
