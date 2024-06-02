@@ -1,14 +1,15 @@
 %{
 /* 선언 부분은 생략 가능 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <malloc.h>
+#include "glob.h"
 
 /*yacc source for Mini C */
 void semantic(int);
+void ReportError(ERRORtypes err);
 
-void yyerror(char *);
-extern int yyparse();
 %}
 
 /* 토큰을 나타내는 이름들을 미리 선언 가능.
@@ -21,9 +22,9 @@ extern int yyparse();
 %nonassoc LOWER_THAN_ELSE
 %nonassoc TELSE
 %%
-mini_c						: translation_unit							{ semantic(1); };
-translation_unit	    	: external_dcl								{ semantic(2); }
-							| translation_unit external_dcl			    { semantic(3); };
+mini_c						: translation_unit							{  };
+translation_unit	    	: external_dcl								{  }
+							| translation_unit external_dcl			    {  };
 external_dcl				: function_def								{ semantic(4); }
 							| declaration								{ semantic(5); };
 function_def				: function_header compound_st				{ semantic(6); };
@@ -37,7 +38,8 @@ type_qualifier		    	: TCONST									{ semantic(13); };
 type_specifier			    : TINT										{ semantic(14); }
 							| TVOID										{ semantic(15); };
 function_name		        : TIDENT									{ semantic(16); };
-formal_param		    	: '(' opt_formal_param ')'					{ semantic(17); };
+formal_param		    	: '(' opt_formal_param ')'					{ semantic(17); }
+							| '(' opt_formal_param error				{ yyerrok; ReportError(noparen); };
 opt_formal_param 	        : formal_param_list							{ semantic(18); }
 							|											{ semantic(19); };
 formal_param_list       	: param_dcl									{ semantic(20); }
@@ -49,6 +51,7 @@ opt_dcl_list				: declaration_list							{ semantic(24); }
 declaration_list		    : declaration								{ semantic(26); }
 							| declaration_list declaration				{ semantic(27); };
 declaration				    : dcl_spec init_dcl_list ';'				{ semantic(28); };
+							| dcl_spec init_dcl_list error				{ yyerrok; ReportError(nosemicolon); };
 init_dcl_list				: init_declarator							{ semantic(29); }
 							| init_dcl_list ',' init_declarator			{ semantic(30); };
 init_declarator			    : declarator								{ semantic(31); }
@@ -67,13 +70,17 @@ statement					: compound_st								{ semantic(41); }
 							| while_st									{ semantic(44); }
 							| return_st									{ semantic(45); }
 							;
-expression_st	    		: opt_expression ';'						{ semantic(46); };
+expression_st	    		: opt_expression ';'						{ semantic(46); }
+							| opt_expression error						{ yyerrok; ReportError(nosemicolon); };
 opt_expression	        	: expression								{ semantic(47); }
 							|											{ semantic(48); };
 if_st						: TIF '(' expression ')' statement %prec LOWER_THAN_ELSE			        { semantic(49); }
-							| TIF '(' expression ')' statement TELSE statement							{ semantic(50); };
-while_st		    		: TWHILE '(' expression ')' statement		{ semantic(51); };
-return_st					: TRETURN opt_expression ';'				{ semantic(52); };
+							| TIF '(' expression ')' statement TELSE statement							{ semantic(50); }
+							| TIF '(' expression error					{ yyerrok; ReportError(noparen); };
+while_st		    		: TWHILE '(' expression ')' statement		{ semantic(51); }
+							| TWHILE '(' expression error				{ yyerrok; ReportError(noparen); };
+return_st					: TRETURN opt_expression ';'				{ semantic(52); }
+							| TRETURN opt_expression error								{ yyerrok; ReportError(nosemicolon); };
 expression			    	: assignment_exp							{ semantic(53); };
 assignment_exp		        : logical_or_exp							{ semantic(54); }
 							| unary_exp '=' assignment_exp				{ semantic(55); }
@@ -110,6 +117,7 @@ unary_exp   				: postfix_exp         						{semantic(80);}
 postfix_exp 				: primary_exp 								{semantic(85);}
 							| postfix_exp '[' expression ']' 			{semantic(86);}
 							| postfix_exp '(' opt_actual_param ')' 		{semantic(87);}
+							| postfix_exp '(' opt_actual_param error    { yyerrok; ReportError(noparen); }
 							| postfix_exp TINC 							{semantic(88);}
 							| postfix_exp TDEC							{semantic(89);};
 opt_actual_param 	        : actual_param 								{semantic(90);}
@@ -119,20 +127,24 @@ actual_param_list 	        : assignment_exp 							{semantic(93);}
 							| actual_param_list ',' assignment_exp 		{semantic(94);};
 primary_exp 			    : TIDENT 									{semantic(95);}
 							| TNUMBER 									{semantic(96);}
-							| '(' expression ')' 						{semantic(97);};
+							| '(' expression ')' 						{semantic(97);}
+							| '(' expression error						{ yyerrok; ReportError(noparen); };
 %%
-/* #include "lex.yy.c" */
-void yyerror(char *s)
-{
-	printf("%s\n", s);
-}
+
 void semantic(int n)
 {
-	printf("reduced rule number = %d\n", n);
+   printf("reduced rule number = %d\n", n);
 }
-void main()
-{
-	printf("start of parser\n");
-	yyparse();
-	printf("end 	of parser\n");
+
+void ReportError(ERRORtypes err){
+	switch(err){
+	case nosemicolon:
+		printf("Error Detected! - No semicolon \n");
+		errcount++;
+		break;
+	case noparen:
+		printf("Error Detected! - Parentheses are not matched \n");
+		errcount++;
+		break;
+	}
 }

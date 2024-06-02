@@ -416,10 +416,10 @@ char *yytext;
 #line 2 "MiniC.l"
 /*lex source for Mini C*/
 /*실행을 위해 추가한 부분*/
-/* #include "tn.h" */
+
 #include <stdio.h>
 #include <stdlib.h>
-
+/* #include "tn.h" */
 #include "parser_tab.h"
 
 #line 426 "lex.yy.c"
